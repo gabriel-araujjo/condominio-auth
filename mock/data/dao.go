@@ -34,6 +34,19 @@ func (m *MockUserDao) EXPECT() *MockUserDaoMockRecorder {
 	return m.recorder
 }
 
+// Auth mocks base method
+func (m *MockUserDao) Auth(arg0, arg1 string) (int64, error) {
+	ret := m.ctrl.Call(m, "Auth", arg0, arg1)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Auth indicates an expected call of Auth
+func (mr *MockUserDaoMockRecorder) Auth(arg0, arg1 interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Auth", reflect.TypeOf((*MockUserDao)(nil).Auth), arg0, arg1)
+}
+
 // Create mocks base method
 func (m *MockUserDao) Create(arg0 *domain.User) error {
 	ret := m.ctrl.Call(m, "Create", arg0)
@@ -47,7 +60,7 @@ func (mr *MockUserDaoMockRecorder) Create(arg0 interface{}) *gomock.Call {
 }
 
 // Delete mocks base method
-func (m *MockUserDao) Delete(arg0 uint64) error {
+func (m *MockUserDao) Delete(arg0 int64) error {
 	ret := m.ctrl.Call(m, "Delete", arg0)
 	ret0, _ := ret[0].(error)
 	return ret0
@@ -72,7 +85,7 @@ func (mr *MockUserDaoMockRecorder) Get(arg0 interface{}) *gomock.Call {
 }
 
 // Update mocks base method
-func (m *MockUserDao) Update(arg0 uint64, arg1 []json_patcher.Operation) error {
+func (m *MockUserDao) Update(arg0 int64, arg1 []json_patcher.Operation) error {
 	ret := m.ctrl.Call(m, "Update", arg0, arg1)
 	ret0, _ := ret[0].(error)
 	return ret0
@@ -104,6 +117,19 @@ func NewMockClientDao(ctrl *gomock.Controller) *MockClientDao {
 // EXPECT returns an object that allows the caller to indicate expected use
 func (m *MockClientDao) EXPECT() *MockClientDaoMockRecorder {
 	return m.recorder
+}
+
+// Auth mocks base method
+func (m *MockClientDao) Auth(arg0, arg1 string) (string, error) {
+	ret := m.ctrl.Call(m, "Auth", arg0, arg1)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Auth indicates an expected call of Auth
+func (mr *MockClientDaoMockRecorder) Auth(arg0, arg1 interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Auth", reflect.TypeOf((*MockClientDao)(nil).Auth), arg0, arg1)
 }
 
 // Create mocks base method

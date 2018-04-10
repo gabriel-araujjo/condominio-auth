@@ -9,7 +9,6 @@ import ( // Standard library packages
 )
 
 func main() {
-
 	conf := config.DefaultConfig()
 	dao, err := factory.NewDao(conf)
 
