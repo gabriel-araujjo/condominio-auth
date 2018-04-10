@@ -22,10 +22,11 @@ func (e *UserRouter) Auth(c *gin.Context) {
 		c.Error(httperrors.PreconditionFailed("cred and passws fields are required"))
 		return
 	}
-	var id int64
-	if id, err :=e.dao.User.Auth(body.Credential, body.Password); err != nil {
 
+	if _, err :=e.dao.User.Auth(body.Credential, body.Password); err != nil {
+		c.Error(httperrors.Forbidden("forbidden"))
 	}
+	// TODO: send JWT back
 }
 
 func (e *UserRouter) Get(c *gin.Context) {

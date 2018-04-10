@@ -25,7 +25,7 @@ func (e *ClientRouter) Auth(c *gin.Context)  {
 		return
 	}
 
-	c.String(http.StatusOK, e.jwt.SignToken(jwt.MapClaims{
+	c.String(http.StatusOK, e.jwt.Sign(jwt.MapClaims{
 		"client_id": pubId,
 	}))
 }
