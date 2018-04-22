@@ -3,7 +3,6 @@ package httperrors
 import (
 	"github.com/gin-gonic/gin"
 	"errors"
-	"net/mail"
 	"net/http"
 )
 

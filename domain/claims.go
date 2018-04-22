@@ -1,5 +1,7 @@
 package domain
 
+import "errors"
+
 // Claims is a jwt as defined in https://tools.ietf.org/html/rfc7519
 // with some useful claims
 type Claims struct {
@@ -38,7 +40,7 @@ type Claims struct {
 }
 
 func (c *Claims) Valid() error {
-	panic("implement me")
+	return errors.New("unimplemented validation")
 }
 
 

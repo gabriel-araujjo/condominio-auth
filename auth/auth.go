@@ -14,11 +14,10 @@ type Auth struct {
 	publicKey interface{}
 }
 
-func (a *Auth) Sign(claims domain.Claims) string {
+func (a *Auth) Sign(claims *domain.Claims) string {
 	claims.ExpirationTime = time.Now().Add(30 * 24 * time.Hour).Unix()
 	claims.NotBefore = time.Now().Unix()
-	jwt.MapClaims{}
-	res, _ := jwt.NewWithClaims(a.method, token).SignedString(a.privateKey)
+	res, _ := jwt.NewWithClaims(a.method, claims).SignedString(a.privateKey)
 	return res
 }
 
@@ -30,7 +29,6 @@ func (a *Auth) Verify(tokenString string) (*jwt.Token, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		// Don't forget to validate the alg is what you expect:
 		if token.Method.Alg() != a.method.Alg() {
-			jwt.SigningMethodRS256
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Method.Alg())
 		}
 
