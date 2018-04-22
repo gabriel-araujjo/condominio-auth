@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/gabriel-araujjo/condominio-auth/data"
+	"github.com/gabriel-araujjo/condominio-auth/dao"
 	"github.com/gin-gonic/gin"
 	"github.com/gabriel-araujjo/condominio-auth/errors"
 	"net/http"
@@ -11,7 +11,7 @@ import (
 )
 
 type ClientRouter struct {
-	dao *data.Dao
+	dao *dao.Dao
 	jwt *auth.Auth
 }
 

@@ -180,7 +180,7 @@ func TestUserTailor_Remove(t *testing.T) {
 
 func TestUserDaoMemory(t *testing.T) {
 
-	dao, _ := NewDao(nil)
+	userDao, _, _ := NewDao(nil)
 
 	avatar, _ := url.Parse("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d53")
 
@@ -222,7 +222,7 @@ func TestUserDaoMemory(t *testing.T) {
 
 		for _, tt := range cases {
 			t.Run(tt.name, func(t *testing.T) {
-				err := dao.User.Create(tt.user)
+				err := userDao.Create(tt.user)
 				if tt.expectErr {
 					if err == nil {
 						t.Errorf("test %q: should err be returned", tt.name)
@@ -299,7 +299,7 @@ func TestUserDaoMemory(t *testing.T) {
 
 		for _, tt := range cases {
 			t.Run(tt.name, func(t *testing.T) {
-				id, err := dao.User.Auth(tt.credential, tt.password)
+				id, err := userDao.Auth(tt.credential, tt.password)
 				if tt.expectErr {
 					if err == nil {
 						t.Errorf("test %q: err should be returned", tt.name)
@@ -318,7 +318,7 @@ func TestUserDaoMemory(t *testing.T) {
 	})
 
 	t.Run("Get", func(t *testing.T) {
-		user, err := dao.User.Get(1)
+		user, err := userDao.Get(1)
 		if err != nil {
 			t.Errorf("nonexpected error %q", err)
 		}
@@ -352,7 +352,7 @@ func TestUserDaoMemory(t *testing.T) {
 
 		for _, tt := range cases {
 			t.Run(tt.name, func(t *testing.T) {
-				err := dao.User.Delete(tt.id)
+				err := userDao.Delete(tt.id)
 				if tt.expectErr {
 					if err == nil {
 						t.Errorf("test %q: should err be returned", tt.name)
@@ -361,7 +361,7 @@ func TestUserDaoMemory(t *testing.T) {
 					if err != nil {
 						t.Errorf("test %q: should err be nil instead of %q", tt.name, err)
 					}
-					if u, _ := dao.User.Get(tt.id); u != nil {
+					if u, _ := userDao.Get(tt.id); u != nil {
 						t.Error("expecting user does not exist")
 					}
 				}

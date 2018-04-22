@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/data/postgres/dao_test.go" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/data/postgres/scheme.go" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/data/postgres/userdao.go" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/dao/internal/postgres/dao_test.go" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/dao/internal/postgres/scheme.go" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/dao/internal/postgres/userdao.go" dialect="PostgreSQL" />
   </component>
 </project>

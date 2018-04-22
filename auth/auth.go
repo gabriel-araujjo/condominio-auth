@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 	"errors"
+	"github.com/gabriel-araujjo/condominio-auth/domain"
 )
-
 
 type Auth struct {
 	method jwt.SigningMethod
@@ -14,9 +14,10 @@ type Auth struct {
 	publicKey interface{}
 }
 
-func (a *Auth) Sign(token jwt.MapClaims) string {
-	token["exp"] = time.Now().Add(30 * 24 * time.Hour).Unix()
-	token["nbf"] = time.Now().Unix()
+func (a *Auth) Sign(claims domain.Claims) string {
+	claims.ExpirationTime = time.Now().Add(30 * 24 * time.Hour).Unix()
+	claims.NotBefore = time.Now().Unix()
+	jwt.MapClaims{}
 	res, _ := jwt.NewWithClaims(a.method, token).SignedString(a.privateKey)
 	return res
 }
@@ -28,8 +29,9 @@ func (a *Auth) Verify(tokenString string) (*jwt.Token, error) {
 	// to the callback, providing flexibility.
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		// Don't forget to validate the alg is what you expect:
-		if _, ok := token.Method.(*jwt.SigningMethodRSA); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		if token.Method.Alg() != a.method.Alg() {
+			jwt.SigningMethodRS256
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Method.Alg())
 		}
 
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")

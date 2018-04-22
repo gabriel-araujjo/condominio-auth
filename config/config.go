@@ -14,11 +14,14 @@ type Config struct {
 		Driver          string
 		DNS             string
 		VersionStrategy string
+		TokenDriver string
+		TokenDNS string
 	}
 	Clients []*domain.Client
 	Jwt struct {
-		VerifyKey *rsa.PublicKey
-		SignKey   *rsa.PrivateKey
+		SignatureAlgorithm string
+		VerifyKey interface{}
+		SignKey   interface{}
 	}
 }
 
@@ -67,15 +70,21 @@ func DefaultConfig() *Config {
 			Driver          string
 			DNS             string
 			VersionStrategy string
+			TokenDriver     string
+			TokenDNS		string
 		}{
 			Driver:          getEnv("DB_DRIVER", "postgres"),
 			DNS:             getEnv("DB_DATA_SOURCE_NAME", ""),
 			VersionStrategy: getEnv("DB_VERSION_STRATEGY", "psql-versioning"),
+			TokenDriver:     getEnv("DB_TOKEN_DRIVER", "mongo"),
+			TokenDNS:		 getEnv("DB_TOKEN_DATA_SOURCE_NAME", ""),
 		},
 		Jwt: struct {
-			VerifyKey *rsa.PublicKey
-			SignKey   *rsa.PrivateKey
+			SignatureAlgorithm string
+			VerifyKey interface{}
+			SignKey   interface{}
 		}{
+			SignatureAlgorithm: getEnv("JWT_ALG", "RS512"),
 			VerifyKey: getVerifyKey(),
 			SignKey: getSignKey(),
 		},

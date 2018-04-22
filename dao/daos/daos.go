@@ -1,20 +1,9 @@
-package data
+package daos
 
 import (
 	"github.com/gabriel-araujjo/condominio-auth/domain"
-	"io"
 	jp "github.com/gabriel-araujjo/json-patcher"
 )
-
-type Dao struct {
-	closer io.Closer
-	User UserDao
-	Client ClientDao
-}
-
-func NewDao(user UserDao, client ClientDao, closer io.Closer) *Dao {
-	return &Dao{closer:closer, User: user, Client: client}
-}
 
 type ClientDao interface {
 	Create(u *domain.Client) error
@@ -32,9 +21,7 @@ type UserDao interface {
 	Auth(credential string, password string) (int64, error)
 }
 
-func (d *Dao) Close() error {
-	if d.closer != nil {
-		return d.closer.Close()
-	}
-	return nil
+type TokenDao interface {
+	Verify(token *domain.Token) error
+	Revoke(token *domain.Token) error
 }

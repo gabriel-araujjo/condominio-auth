@@ -1,11 +1,11 @@
 package routes
 
 import (
-	"github.com/gabriel-araujjo/condominio-auth/data"
+	"github.com/gabriel-araujjo/condominio-auth/dao"
 	"github.com/gin-gonic/gin"
 )
 
-func ConfigRoutes(router gin.IRouter, dao *data.Dao) {
+func ConfigRoutes(router gin.IRouter, dao *dao.Dao) {
 	user := &UserRouter{dao}
 
 	router.POST("/auth", user.Auth)

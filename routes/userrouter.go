@@ -2,14 +2,14 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gabriel-araujjo/condominio-auth/data"
+	"github.com/gabriel-araujjo/condominio-auth/dao"
 	"github.com/gabriel-araujjo/base62"
 	"github.com/gabriel-araujjo/condominio-auth/errors"
 	"fmt"
 )
 
 type UserRouter struct {
-	dao *data.Dao
+	dao *dao.Dao
 }
 
 func (e *UserRouter) Auth(c *gin.Context) {

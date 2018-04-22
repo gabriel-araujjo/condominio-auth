@@ -2,7 +2,7 @@ package postgres
 
 import (
 	"database/sql"
-	"github.com/gabriel-araujjo/condominio-auth/data/postgres/mock"
+	"github.com/gabriel-araujjo/condominio-auth/dao/internal/postgres/mock"
 	"github.com/gabriel-araujjo/condominio-auth/domain"
 	"net/url"
 	"testing"

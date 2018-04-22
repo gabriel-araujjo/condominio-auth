@@ -1,43 +1,52 @@
 package postgres
 
 import (
-	"github.com/gabriel-araujjo/condominio-auth/data"
 	"gopkg.in/DATA-DOG/go-sqlmock.v1"
 	"reflect"
 	"testing"
-	"github.com/gabriel-araujjo/condominio-auth/data/postgres/mock"
+	"./mock"
 	"github.com/gabriel-araujjo/versioned-database"
 	"database/sql"
 )
 
 func TestNewDao(t *testing.T) {
 
+	// It should return a userDaoPG a clientDaoPG.
+	// The passed database must be returned as a closer
+	// Error must be nil
 	t.Run("SchemeOK", func(t *testing.T) {
 		db, m, _ := sqlmock.New()
 
 		// version.PersistScheme(db, scheme) always make a transaction
 		expectCommitedTx(&m)
-		dao, err := newDaoInternal(db, mock.SchemeOK())
+		userDao, clientDao, closer, err := newDaoInternal(db, mock.SchemeOK())
 
-		want := data.NewDao(&userDaoPG{db:db}, &clientDaoPG{db:db}, db)
-		if !reflect.DeepEqual(dao, want) {
-			t.Errorf("newdao: got=%v, want=%v", dao, want)
-		}
+		wantedUserDao := &userDaoPG{db:db}
+		wantedClientDao := &clientDaoPG{db:db}
 
 		if err != nil {
 			t.Errorf("newdao: err should be nil instead of %q", err)
 		}
+
+		if !reflect.DeepEqual(userDao, wantedUserDao) {
+			t.Errorf("newdao: wrong user dao got=%v, want=%v", userDao, wantedUserDao)
+		}
+
+		if !reflect.DeepEqual(clientDao, wantedClientDao) {
+			t.Errorf("newdao: wrong client dao got=%v, want=%v", clientDao, wantedClientDao)
+		}
+
+		if db != closer {
+			t.Error("newdao: passed db is not closer")
+		}
 	})
 
+	// It should return an error and close db
 	t.Run("CrashedScheme", func(t *testing.T) {
 		db, m, _ := sqlmock.New()
 		expectRollbackTx(&m)
 		m.ExpectClose()
-		dao, err := newDaoInternal(db, mock.CrashedScheme())
-
-		if dao != nil {
-			t.Error("newdao: dao should be nil")
-		}
+		_, _, _, err := newDaoInternal(db, mock.CrashedScheme())
 
 		if err == nil {
 			t.Error("newdao: err should be nil")
@@ -65,11 +74,7 @@ func TestNewDao(t *testing.T) {
 				db, m, _ := sqlmock.New()
 				expectCommitedTx(&m)
 				scheme, check := tt.mocker()
-				dao, err := newDaoInternal(db, scheme)
-
-				if dao == nil {
-					t.Error("newdao: dao should not be nil")
-				}
+				_, _, _, err := newDaoInternal(db, scheme)
 
 				if err != nil {
 					t.Errorf("newdao: err should be nil instead of %q", err)
@@ -83,25 +88,20 @@ func TestNewDao(t *testing.T) {
 	})
 
 	t.Run("FakeDatabase", func(t *testing.T) {
-		dao, err := NewDao(mock.FakeDBConfig())
+		userDao, clientDao, db, err := NewDao(mock.FakeDBConfig())
 		if err != nil {
 			t.Errorf("newdao: err should be nil instead of %q", err)
 		}
 
-		if dao == nil {
+		if userDao == nil || clientDao == nil || db == nil {
 			t.Fatal("newdao: dao should not be nil")
 		}
 
-
-		cleanDB(t, dao.User.(*userDaoPG).db)
-		dao.Close()
+		cleanDB(t, db.(*sql.DB))
 	})
 
 	t.Run("InvalidDriver", func(t *testing.T) {
-		dao, err := NewDao(mock.InvalidDBConfig())
-		if dao != nil {
-			t.Fatal("newdao: dao should be nil")
-		}
+		_, _, _, err := NewDao(mock.InvalidDBConfig())
 
 		if err == nil {
 			t.Error("newdao: err should not be nil")

@@ -2,7 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8150f9c0-fc9b-4c05-b01e-38b4aa692043" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/mock/data/dao.go" afterPath="$PROJECT_DIR$/mock/data/dao.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dao/dao.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dao/internal/memory/dao.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/domain/claims.go" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/auth/auth.go" afterPath="$PROJECT_DIR$/auth/auth.go" />
+      <change beforePath="$PROJECT_DIR$/config/config.go" afterPath="$PROJECT_DIR$/config/config.go" />
+      <change beforePath="$PROJECT_DIR$/data/dao.go" afterPath="$PROJECT_DIR$/dao/daos/daos.go" />
+      <change beforePath="$PROJECT_DIR$/data/dao_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/data/factory/factory.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/data/memory/clientdao.go" afterPath="$PROJECT_DIR$/dao/internal/memory/clientdao.go" />
+      <change beforePath="$PROJECT_DIR$/data/memory/dao.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/data/memory/userdao.go" afterPath="$PROJECT_DIR$/dao/internal/memory/userdao.go" />
+      <change beforePath="$PROJECT_DIR$/data/memory/userdao_test.go" afterPath="$PROJECT_DIR$/dao/internal/memory/userdao_test.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/clientdao.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/clientdao.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/clientdao_test.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/clientdao_test.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/dao.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/dao.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/dao_test.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/dao_test.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/mock/config.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/mock/config.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/mock/scheme.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/mock/scheme.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/mock/versioning.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/mock/versioning.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/scheme.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/scheme.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/scheme_test.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/scheme_test.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/userdao.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/userdao.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/userdao_test.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/userdao_test.go" />
+      <change beforePath="$PROJECT_DIR$/routes/clientrouter.go" afterPath="$PROJECT_DIR$/routes/clientrouter.go" />
+      <change beforePath="$PROJECT_DIR$/routes/router.go" afterPath="$PROJECT_DIR$/routes/router.go" />
+      <change beforePath="$PROJECT_DIR$/routes/userrouter.go" afterPath="$PROJECT_DIR$/routes/userrouter.go" />
       <change beforePath="$PROJECT_DIR$/server.go" afterPath="$PROJECT_DIR$/server.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,164 +64,102 @@
     <favorites_list name="condominio-auth" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="config.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.go">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="router.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/router.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="288">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dao.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/dao.go">
+      <file leaf-file-name="routergroup.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/routergroup.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="29" column="10" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="10" />
+            <state relative-caret-position="774">
+              <caret line="48" column="64" lean-forward="false" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="64" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userdao.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/postgres/userdao.go">
+      <file leaf-file-name="auth.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/auth/auth.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1674">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="216">
+              <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dao.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/postgres/dao.go">
+      <file leaf-file-name="token.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/token.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="claims.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/claims.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blacklist.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/auth/blacklist/blacklist.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="claims.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/domain/claims.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+              <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scheme.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/postgres/scheme.go">
+      <file leaf-file-name="zoneinfo.go" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/go/src/time/zoneinfo.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3636">
-              <caret line="205" column="28" lean-forward="false" selection-start-line="205" selection-start-column="28" selection-end-line="205" selection-end-column="28" />
-              <folding>
-                <marker date="1511399752620" expanded="true" signature="238:1338" ph="CREATE FUNCT... check_cpf" />
-                <marker date="1511399752620" expanded="true" signature="290:1338" ph="AS $$ DECLAR... " />
-                <marker date="1511399752620" expanded="true" signature="295:1318" ph=" DECLARE dv1... " />
-                <marker date="1511399752620" expanded="true" signature="383:427" ph="IF cpf IS NU... " />
-                <marker date="1511399752620" expanded="true" signature="383:1313" ph="IF cpf IS NU... " />
-                <marker date="1511399752620" expanded="true" signature="432:720" ph="IF (cpf &gt;= 9... " />
-                <marker date="1511399752620" expanded="true" signature="724:739" ph="dv2 := cpf %... " />
-                <marker date="1511399752620" expanded="true" signature="743:758" ph="cpf := cpf /... " />
-                <marker date="1511399752620" expanded="true" signature="762:777" ph="dv1 := cpf %... " />
-                <marker date="1511399752620" expanded="true" signature="781:796" ph="cpf := cpf /... " />
-                <marker date="1511399752620" expanded="true" signature="811:824" ph="calc_dv1 := " />
-                <marker date="1511399752620" expanded="true" signature="828:847" ph="calc_dv2 := " />
-                <marker date="1511399752620" expanded="true" signature="852:1013" ph="LOOP EXIT WH... " />
-                <marker date="1511399752620" expanded="true" signature="861:878" ph="EXIT WHEN i " />
-                <marker date="1511399752620" expanded="true" signature="884:921" ph="calc_dv1 := " />
-                <marker date="1511399752620" expanded="true" signature="943:980" ph="calc_dv2 := " />
-                <marker date="1511399752620" expanded="true" signature="986:1001" ph="cpf := cpf /... " />
-                <marker date="1511399752620" expanded="true" signature="1018:1043" ph="calc_dv1 := " />
-                <marker date="1511399752620" expanded="true" signature="1047:1072" ph="calc_dv2 := " />
-                <marker date="1511399752620" expanded="true" signature="1077:1168" ph="IF ( calc_dv... " />
-                <marker date="1511399752620" expanded="true" signature="1107:1120" ph="calc_dv1 := " />
-                <marker date="1511399752620" expanded="true" signature="1133:1158" ph="calc_dv1 := " />
-                <marker date="1511399752620" expanded="true" signature="1173:1264" ph="IF ( calc_dv... " />
-                <marker date="1511399752620" expanded="true" signature="1203:1216" ph="calc_dv2 := " />
-                <marker date="1511399752620" expanded="true" signature="1229:1254" ph="calc_dv2 := " />
-                <marker date="1511399752620" expanded="true" signature="1269:1312" ph="RETURN ( dv1... " />
-                <marker date="1511399752620" expanded="true" signature="1341:1366" ph="CREATE EXTEN... pgcrypto" />
-                <marker date="1511399752620" expanded="true" signature="1369:1665" ph="CREATE FUNCT... check_email_uniqueness" />
-                <marker date="1511399752620" expanded="true" signature="1432:1665" ph="AS $$ DECLAR... " />
-                <marker date="1511399752620" expanded="true" signature="1437:1645" ph=" DECLARE c I... " />
-                <marker date="1511399752620" expanded="true" signature="1461:1501" ph="IF m IS NULL... " />
-                <marker date="1511399752620" expanded="true" signature="1461:1640" ph="IF m IS NULL... " />
-                <marker date="1511399752620" expanded="true" signature="1505:1577" ph="SELECT count... email_lookup" />
-                <marker date="1511399752620" expanded="true" signature="1581:1639" ph="IF c &gt; 0 THE... " />
-                <marker date="1511399752620" expanded="true" signature="1668:1964" ph="CREATE FUNCT... check_phone_uniqueness" />
-                <marker date="1511399752620" expanded="true" signature="1731:1964" ph="AS $$ DECLAR... " />
-                <marker date="1511399752620" expanded="true" signature="1736:1944" ph=" DECLARE c I... " />
-                <marker date="1511399752620" expanded="true" signature="1760:1800" ph="IF p IS NULL... " />
-                <marker date="1511399752620" expanded="true" signature="1760:1939" ph="IF p IS NULL... " />
-                <marker date="1511399752620" expanded="true" signature="1804:1876" ph="SELECT count... phone_lookup" />
-                <marker date="1511399752620" expanded="true" signature="1880:1938" ph="IF c &gt; 0 THE... " />
-                <marker date="1511399752620" expanded="true" signature="1967:2388" ph="CREATE TABLE... user" />
-                <marker date="1511399752620" expanded="true" signature="2392:2677" ph="CREATE TABLE... user_email" />
-                <marker date="1511399752620" expanded="true" signature="2681:2954" ph="CREATE TABLE... user_phone" />
-                <marker date="1511399752620" expanded="true" signature="2957:3096" ph="CREATE TABLE... client" />
-                <marker date="1511399752620" expanded="true" signature="3099:3226" ph="CREATE VIEW &quot;email_lookup&quot;... " />
-                <marker date="1511399752620" expanded="true" signature="3130:3169" ph="SELECT u.use... user" />
-                <marker date="1511399752620" expanded="true" signature="3181:3226" ph="SELECT e.use... user_email" />
-                <marker date="1511399752620" expanded="true" signature="3229:3356" ph="CREATE VIEW &quot;phone_lookup&quot;... " />
-                <marker date="1511399752620" expanded="true" signature="3260:3299" ph="SELECT u.use... user" />
-                <marker date="1511399752620" expanded="true" signature="3311:3356" ph="SELECT p.use... user_phone" />
-                <marker date="1511399752620" expanded="true" signature="3359:3599" ph="CREATE FUNCT... hash_password" />
-                <marker date="1511399752620" expanded="true" signature="3407:3599" ph="AS $$ BEGIN " />
-                <marker date="1511399752620" expanded="true" signature="3412:3579" ph=" BEGIN IF NE... " />
-                <marker date="1511399752620" expanded="true" signature="3422:3558" ph="IF NEW.hash " />
-                <marker date="1511399752620" expanded="true" signature="3422:3574" ph="IF NEW.hash " />
-                <marker date="1511399752620" expanded="true" signature="3503:3548" ph="NEW.hash = c... " />
-                <marker date="1511399752620" expanded="true" signature="3602:3710" ph="CREATE TRIGG... tg_user_hash" />
-                <marker date="1511399752620" expanded="true" signature="3808:3908" ph="INSERT INTO &quot;client&quot;... " />
-              </folding>
+            <state relative-caret-position="234">
+              <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/user.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dao_test.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/dao_test.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dao.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mock/data/dao.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-887">
-              <caret line="110" column="5" lean-forward="false" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-              <folding>
-                <element signature="e#206#391#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clientdao_test.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/postgres/clientdao_test.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="27" column="48" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dao_test.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/postgres/dao_test.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="64" column="41" lean-forward="true" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
+            <state relative-caret-position="288">
+              <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -211,10 +176,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sql.Open</find>
-      <find>queryBasedExpectation</find>
-      <find>Regexp</find>
-      <find>expect</find>
       <find>err</find>
       <find>Scan</find>
       <find>testD</find>
@@ -236,11 +197,15 @@
       <find>digits</find>
       <find>formatBits</find>
       <find>fulando</find>
-      <find>keyFunc</find>
       <find>Apply</find>
       <find>input</find>
       <find>Patch</find>
       <find>reflect\.ValueOf\(user\).FieldByName\(([^)]+)\)</find>
+      <find>keyFunc</find>
+      <find>Engine</find>
+      <find>IRouter</find>
+      <find>IRoutes</find>
+      <find>iss</find>
     </findStrings>
     <replaceStrings>
       <replace>$1</replace>
@@ -256,17 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/domain/app.go" />
-        <option value="$PROJECT_DIR$/data/clientdao.go" />
-        <option value="$PROJECT_DIR$/data/userdao.go" />
-        <option value="$PROJECT_DIR$/config.go" />
-        <option value="$PROJECT_DIR$/data/postgres/postgres_test.go" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
-        <option value="$PROJECT_DIR$/data/postgres/connection.go" />
-        <option value="$PROJECT_DIR$/data/postgres/connection_test.go" />
-        <option value="$PROJECT_DIR$/data/postgres/daopg_test.go" />
-        <option value="$PROJECT_DIR$/data/postgres/newdao_test.go" />
-        <option value="$PROJECT_DIR$/data/postgres/mock/versioning.go" />
         <option value="$PROJECT_DIR$/data/postgres/mock/db.go" />
         <option value="$PROJECT_DIR$/data/postgres/mocks_test.go" />
         <option value="$PROJECT_DIR$/data/postgres/mock/scheme.go" />
@@ -276,37 +230,48 @@
         <option value="$PROJECT_DIR$/mock/io/closer.go" />
         <option value="$PROJECT_DIR$/data/postgres/updatequery.go" />
         <option value="$PROJECT_DIR$/data/postgres/query.go" />
-        <option value="$PROJECT_DIR$/data/postgres/dao.go" />
-        <option value="$PROJECT_DIR$/data/postgres/dao_test.go" />
-        <option value="$PROJECT_DIR$/data/postgres/clientdao_test.go" />
         <option value="$PROJECT_DIR$/data/postgres/mock/config.go" />
         <option value="$PROJECT_DIR$/domain/client.go" />
-        <option value="$PROJECT_DIR$/config/config.go" />
         <option value="/PostgreSQL Fragment (scheme.go:236).sql" />
         <option value="$PROJECT_DIR$/data/postgres/scheme_test.go" />
-        <option value="$PROJECT_DIR$/data/postgres/scheme.go" />
-        <option value="$PROJECT_DIR$/data/dao_test.go" />
         <option value="$PROJECT_DIR$/mock/data/dao.go" />
-        <option value="$PROJECT_DIR$/data/postgres/userdao.go" />
         <option value="$PROJECT_DIR$/data/postgres/userdao_test.go" />
-        <option value="$PROJECT_DIR$/data/dao.go" />
-        <option value="$PROJECT_DIR$/data/postgres/clientdao.go" />
         <option value="$PROJECT_DIR$/errors/errors.go" />
         <option value="$PROJECT_DIR$/auth/jwt/dao.go" />
         <option value="$PROJECT_DIR$/auth/jwt/auth.go" />
-        <option value="$PROJECT_DIR$/auth/auth.go" />
         <option value="$PROJECT_DIR$/../json-patcher/patcher.go" />
         <option value="$PROJECT_DIR$/domain/user.go" />
-        <option value="$PROJECT_DIR$/data/memory/dao.go" />
-        <option value="$PROJECT_DIR$/data/memory/clientdao.go" />
-        <option value="$PROJECT_DIR$/data/memory/userdao_test.go" />
-        <option value="$PROJECT_DIR$/data/memory/userdao.go" />
         <option value="$PROJECT_DIR$/data/factory/factory.go" />
-        <option value="$PROJECT_DIR$/routes/router.go" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/routes/clientrouter.go" />
         <option value="$PROJECT_DIR$/routes/userrouter.go" />
+        <option value="$PROJECT_DIR$/data/dao/userdao.go" />
+        <option value="$PROJECT_DIR$/data/dao/clientdao.go" />
+        <option value="$PROJECT_DIR$/data/dao/dao.go" />
+        <option value="$PROJECT_DIR$/data/postgres/scheme.go" />
+        <option value="$PROJECT_DIR$/data/postgres/userdao.go" />
+        <option value="$PROJECT_DIR$/data/postgres/clientdao.go" />
+        <option value="$PROJECT_DIR$/data/memory/clientdao.go" />
+        <option value="$PROJECT_DIR$/data/memory/dao.go" />
+        <option value="$PROJECT_DIR$/data/memory/userdao.go" />
+        <option value="$PROJECT_DIR$/data/memory/userdao_test.go" />
+        <option value="$PROJECT_DIR$/data/postgres/clientdao_test.go" />
+        <option value="$PROJECT_DIR$/data/postgres/dao.go" />
+        <option value="$PROJECT_DIR$/data/postgres/dao_test.go" />
+        <option value="$PROJECT_DIR$/data/dao_test.go" />
+        <option value="$PROJECT_DIR$/data/daos/dao.go" />
+        <option value="$PROJECT_DIR$/data/dao.go" />
+        <option value="$PROJECT_DIR$/domain/Token.go" />
+        <option value="$PROJECT_DIR$/config/config.go" />
+        <option value="$PROJECT_DIR$/dao/internal/mongo/tokendao.go" />
+        <option value="$PROJECT_DIR$/dao/daos/daos.go" />
+        <option value="$PROJECT_DIR$/dao/dao.go" />
         <option value="$PROJECT_DIR$/server.go" />
+        <option value="$PROJECT_DIR$/routes/router.go" />
+        <option value="$PROJECT_DIR$/domain/token.go" />
+        <option value="$PROJECT_DIR$/auth/auth.go" />
+        <option value="$PROJECT_DIR$/auth/blacklist/blacklist.go" />
+        <option value="$PROJECT_DIR$/domain/claims.go" />
       </list>
     </option>
   </component>
@@ -317,10 +282,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="47" />
-    <option name="width" value="1346" />
-    <option name="height" value="701" />
+    <option name="x" value="85" />
+    <option name="y" value="72" />
+    <option name="width" value="1221" />
+    <option name="height" value="638" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -338,18 +303,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="condominio-auth" type="cbb8eebc:String" user="condominio-auth" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -365,25 +318,24 @@
             <path>
               <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
               <item name="condominio-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+              <item name="blacklist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
+              <item name="condominio-auth" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+              <item name="internal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
+              <item name="condominio-auth" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
               <item name="condominio-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
-              <item name="condominio-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="postgres" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
-              <item name="condominio-auth" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="postgres" type="462c0819:PsiDirectoryNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
@@ -395,10 +347,26 @@
               <item name="condominio-auth" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="condominio-auth" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="condominio-auth" type="cbb8eebc:String" user="condominio-auth" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -410,14 +378,15 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/gabriel/go/src/github.com/gabriel-araujjo/condominio-auth/data/postgres/userdao.go" />
     <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/internal" />
       <recent name="$PROJECT_DIR$/mock/data" />
       <recent name="$PROJECT_DIR$/mock/io" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/config" />
-      <recent name="$PROJECT_DIR$/data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -573,10 +542,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <frame x="85" y="72" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36136365" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38636363" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852808" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -593,7 +562,7 @@
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852808" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5613748" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5606838" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -605,7 +574,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="73" />
+      <option name="time" value="74" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GoTestRunConfiguration">
@@ -660,106 +629,7 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/tree.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/binding/json.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/binding/binding.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="47" column="28" lean-forward="false" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/go/src/reflect/type.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="1139" column="5" lean-forward="false" selection-start-line="1139" selection-start-column="5" selection-end-line="1139" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/go/src/time/time.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7524">
-          <caret line="302" column="5" lean-forward="false" selection-start-line="302" selection-start-column="5" selection-end-line="302" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/parser.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="119" column="29" lean-forward="true" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/rsa.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="47" column="68" lean-forward="false" selection-start-line="47" selection-start-column="68" selection-end-line="47" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/go/src/strings/strings.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="782" column="5" lean-forward="false" selection-start-line="782" selection-start-column="5" selection-end-line="782" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/gin.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3906">
-          <caret line="225" column="56" lean-forward="false" selection-start-line="225" selection-start-column="56" selection-end-line="225" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/routergroup.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="70" column="20" lean-forward="false" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/context.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2574">
-          <caret line="159" column="18" lean-forward="false" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/map_claims.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/claims.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/token.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/auth/jwt/auth.go" />
-    <entry file="file://$PROJECT_DIR$/data/postgres/mock/config.go">
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/mock/config.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="38" column="64" lean-forward="false" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
@@ -801,14 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/memory/clientdao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="55" lean-forward="false" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/go/src/strconv/atoi.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
@@ -820,7 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2394">
           <caret line="133" column="5" lean-forward="false" selection-start-line="133" selection-start-column="5" selection-end-line="133" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,17 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2592">
           <caret line="150" column="22" lean-forward="false" selection-start-line="150" selection-start-column="22" selection-end-line="150" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/memory/userdao_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3060">
-          <caret line="177" column="5" lean-forward="false" selection-start-line="177" selection-start-column="5" selection-end-line="177" selection-end-column="5" />
-          <folding>
-            <element signature="e#16#120#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,39 +696,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12492">
           <caret line="710" column="0" lean-forward="false" selection-start-line="710" selection-start-column="0" selection-end-line="710" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/postgres/userdao_test.go">
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/userdao_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-178">
           <caret line="149" column="34" lean-forward="true" selection-start-line="149" selection-start-column="34" selection-end-line="149" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/memory/dao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/signing_method.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -886,17 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/postgres/clientdao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="26" column="1" lean-forward="false" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          <folding>
-            <marker date="1512350926441" expanded="true" signature="285:390" ph="SELECT c.cli... client" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -904,34 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="42" lean-forward="false" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/memory/userdao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#Add#0" expanded="false" />
-            <element signature="n#!!block;n#Remove#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/auth/auth.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/domain/client.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -939,17 +724,189 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mock/data/dao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="110" column="5" lean-forward="false" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/signing_method.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/encoding/json/encode.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="158" column="5" lean-forward="false" selection-start-line="158" selection-start-column="5" selection-end-line="158" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/map_claims.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1026">
+          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/clientrouter.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="81">
           <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding>
-            <element signature="e#16#263#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/parser.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="954">
+          <caret line="58" column="21" lean-forward="true" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/client.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/rsa.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="35" column="49" lean-forward="false" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/dao/clientdao.go" />
+    <entry file="file://$PROJECT_DIR$/data/dao/userdao.go" />
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/userdao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/scheme.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/memory/userdao_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/clientdao_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/dao_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/factory/factory.go" />
+    <entry file="file://$PROJECT_DIR$/data/dao_test.go" />
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/dao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/memory/userdao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/memory/clientdao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/postgres/clientdao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/internal/mongo/tokendao.go" />
+    <entry file="file://$PROJECT_DIR$/dao/internal/memory/dao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/daos/daos.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="12" column="66" lean-forward="false" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="79" column="69" lean-forward="false" selection-start-line="79" selection-start-column="69" selection-end-line="79" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/dao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/gin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2412">
+          <caret line="142" column="5" lean-forward="false" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../gin-gonic/gin/routergroup.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="48" column="64" lean-forward="false" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -961,152 +918,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/factory/factory.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mock/data/dao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-887">
-          <caret line="110" column="5" lean-forward="false" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-          <folding>
-            <element signature="e#206#391#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/dao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="29" column="10" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/postgres/clientdao_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="27" column="48" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/postgres/dao_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="64" column="41" lean-forward="true" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/dao_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/postgres/userdao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1674">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/postgres/dao.go">
+    <entry file="file:///usr/local/go/src/time/zoneinfo.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
-          <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.go">
+    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/claims.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        <state relative-caret-position="108">
+          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/postgres/scheme.go">
+    <entry file="file://$PROJECT_DIR$/../../dgrijalva/jwt-go/token.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3636">
-          <caret line="205" column="28" lean-forward="false" selection-start-line="205" selection-start-column="28" selection-end-line="205" selection-end-column="28" />
-          <folding>
-            <marker date="1511399752620" expanded="true" signature="238:1338" ph="CREATE FUNCT... check_cpf" />
-            <marker date="1511399752620" expanded="true" signature="290:1338" ph="AS $$ DECLAR... " />
-            <marker date="1511399752620" expanded="true" signature="295:1318" ph=" DECLARE dv1... " />
-            <marker date="1511399752620" expanded="true" signature="383:427" ph="IF cpf IS NU... " />
-            <marker date="1511399752620" expanded="true" signature="383:1313" ph="IF cpf IS NU... " />
-            <marker date="1511399752620" expanded="true" signature="432:720" ph="IF (cpf &gt;= 9... " />
-            <marker date="1511399752620" expanded="true" signature="724:739" ph="dv2 := cpf %... " />
-            <marker date="1511399752620" expanded="true" signature="743:758" ph="cpf := cpf /... " />
-            <marker date="1511399752620" expanded="true" signature="762:777" ph="dv1 := cpf %... " />
-            <marker date="1511399752620" expanded="true" signature="781:796" ph="cpf := cpf /... " />
-            <marker date="1511399752620" expanded="true" signature="811:824" ph="calc_dv1 := " />
-            <marker date="1511399752620" expanded="true" signature="828:847" ph="calc_dv2 := " />
-            <marker date="1511399752620" expanded="true" signature="852:1013" ph="LOOP EXIT WH... " />
-            <marker date="1511399752620" expanded="true" signature="861:878" ph="EXIT WHEN i " />
-            <marker date="1511399752620" expanded="true" signature="884:921" ph="calc_dv1 := " />
-            <marker date="1511399752620" expanded="true" signature="943:980" ph="calc_dv2 := " />
-            <marker date="1511399752620" expanded="true" signature="986:1001" ph="cpf := cpf /... " />
-            <marker date="1511399752620" expanded="true" signature="1018:1043" ph="calc_dv1 := " />
-            <marker date="1511399752620" expanded="true" signature="1047:1072" ph="calc_dv2 := " />
-            <marker date="1511399752620" expanded="true" signature="1077:1168" ph="IF ( calc_dv... " />
-            <marker date="1511399752620" expanded="true" signature="1107:1120" ph="calc_dv1 := " />
-            <marker date="1511399752620" expanded="true" signature="1133:1158" ph="calc_dv1 := " />
-            <marker date="1511399752620" expanded="true" signature="1173:1264" ph="IF ( calc_dv... " />
-            <marker date="1511399752620" expanded="true" signature="1203:1216" ph="calc_dv2 := " />
-            <marker date="1511399752620" expanded="true" signature="1229:1254" ph="calc_dv2 := " />
-            <marker date="1511399752620" expanded="true" signature="1269:1312" ph="RETURN ( dv1... " />
-            <marker date="1511399752620" expanded="true" signature="1341:1366" ph="CREATE EXTEN... pgcrypto" />
-            <marker date="1511399752620" expanded="true" signature="1369:1665" ph="CREATE FUNCT... check_email_uniqueness" />
-            <marker date="1511399752620" expanded="true" signature="1432:1665" ph="AS $$ DECLAR... " />
-            <marker date="1511399752620" expanded="true" signature="1437:1645" ph=" DECLARE c I... " />
-            <marker date="1511399752620" expanded="true" signature="1461:1501" ph="IF m IS NULL... " />
-            <marker date="1511399752620" expanded="true" signature="1461:1640" ph="IF m IS NULL... " />
-            <marker date="1511399752620" expanded="true" signature="1505:1577" ph="SELECT count... email_lookup" />
-            <marker date="1511399752620" expanded="true" signature="1581:1639" ph="IF c &gt; 0 THE... " />
-            <marker date="1511399752620" expanded="true" signature="1668:1964" ph="CREATE FUNCT... check_phone_uniqueness" />
-            <marker date="1511399752620" expanded="true" signature="1731:1964" ph="AS $$ DECLAR... " />
-            <marker date="1511399752620" expanded="true" signature="1736:1944" ph=" DECLARE c I... " />
-            <marker date="1511399752620" expanded="true" signature="1760:1800" ph="IF p IS NULL... " />
-            <marker date="1511399752620" expanded="true" signature="1760:1939" ph="IF p IS NULL... " />
-            <marker date="1511399752620" expanded="true" signature="1804:1876" ph="SELECT count... phone_lookup" />
-            <marker date="1511399752620" expanded="true" signature="1880:1938" ph="IF c &gt; 0 THE... " />
-            <marker date="1511399752620" expanded="true" signature="1967:2388" ph="CREATE TABLE... user" />
-            <marker date="1511399752620" expanded="true" signature="2392:2677" ph="CREATE TABLE... user_email" />
-            <marker date="1511399752620" expanded="true" signature="2681:2954" ph="CREATE TABLE... user_phone" />
-            <marker date="1511399752620" expanded="true" signature="2957:3096" ph="CREATE TABLE... client" />
-            <marker date="1511399752620" expanded="true" signature="3099:3226" ph="CREATE VIEW &quot;email_lookup&quot;... " />
-            <marker date="1511399752620" expanded="true" signature="3130:3169" ph="SELECT u.use... user" />
-            <marker date="1511399752620" expanded="true" signature="3181:3226" ph="SELECT e.use... user_email" />
-            <marker date="1511399752620" expanded="true" signature="3229:3356" ph="CREATE VIEW &quot;phone_lookup&quot;... " />
-            <marker date="1511399752620" expanded="true" signature="3260:3299" ph="SELECT u.use... user" />
-            <marker date="1511399752620" expanded="true" signature="3311:3356" ph="SELECT p.use... user_phone" />
-            <marker date="1511399752620" expanded="true" signature="3359:3599" ph="CREATE FUNCT... hash_password" />
-            <marker date="1511399752620" expanded="true" signature="3407:3599" ph="AS $$ BEGIN " />
-            <marker date="1511399752620" expanded="true" signature="3412:3579" ph=" BEGIN IF NE... " />
-            <marker date="1511399752620" expanded="true" signature="3422:3558" ph="IF NEW.hash " />
-            <marker date="1511399752620" expanded="true" signature="3422:3574" ph="IF NEW.hash " />
-            <marker date="1511399752620" expanded="true" signature="3503:3548" ph="NEW.hash = c... " />
-            <marker date="1511399752620" expanded="true" signature="3602:3710" ph="CREATE TRIGG... tg_user_hash" />
-            <marker date="1511399752620" expanded="true" signature="3808:3908" ph="INSERT INTO &quot;client&quot;... " />
-          </folding>
+        <state relative-caret-position="558">
+          <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.go">
+    <entry file="file://$PROJECT_DIR$/auth/auth.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="216">
+          <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/auth/blacklist/blacklist.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/claims.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding />
         </state>
       </provider>

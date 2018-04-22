@@ -3,7 +3,7 @@ package postgres
 import (
 	"testing"
 	"database/sql"
-	"github.com/gabriel-araujjo/condominio-auth/data/postgres/mock"
+	"./mock"
 	"reflect"
 )
 
