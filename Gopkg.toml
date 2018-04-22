@@ -33,6 +33,7 @@ required = ["github.com/lib/pq", "github.com/gabriel-araujjo/psql-versioning"]
 [metadata.heroku]
   root-package = "github.com/gabriel-araujjo/condominio-auth"
   go-version = "go1.10.1"
+  install = ["."]
 
 [[constraint]]
   name = "github.com/dgrijalva/jwt-go"
