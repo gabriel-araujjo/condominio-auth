@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8150f9c0-fc9b-4c05-b01e-38b4aa692043" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/auth/blacklist/blacklist.go" />
       <change beforePath="" afterPath="$PROJECT_DIR$/dao/dao.go" />
       <change beforePath="" afterPath="$PROJECT_DIR$/dao/internal/memory/dao.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dao/internal/postgres/dao.go" />
       <change beforePath="" afterPath="$PROJECT_DIR$/domain/claims.go" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -18,7 +20,7 @@
       <change beforePath="$PROJECT_DIR$/data/memory/userdao_test.go" afterPath="$PROJECT_DIR$/dao/internal/memory/userdao_test.go" />
       <change beforePath="$PROJECT_DIR$/data/postgres/clientdao.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/clientdao.go" />
       <change beforePath="$PROJECT_DIR$/data/postgres/clientdao_test.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/clientdao_test.go" />
-      <change beforePath="$PROJECT_DIR$/data/postgres/dao.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/dao.go" />
+      <change beforePath="$PROJECT_DIR$/data/postgres/dao.go" afterPath="" />
       <change beforePath="$PROJECT_DIR$/data/postgres/dao_test.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/dao_test.go" />
       <change beforePath="$PROJECT_DIR$/data/postgres/mock/config.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/mock/config.go" />
       <change beforePath="$PROJECT_DIR$/data/postgres/mock/scheme.go" afterPath="$PROJECT_DIR$/dao/internal/postgres/mock/scheme.go" />
