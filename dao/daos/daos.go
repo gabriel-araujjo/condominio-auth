@@ -22,6 +22,6 @@ type UserDao interface {
 }
 
 type TokenDao interface {
-	Verify(token *domain.Token) error
-	Revoke(token *domain.Token) error
+	Verify(token *domain.Claims) error
+	Revoke(token *domain.Claims) error
 }
