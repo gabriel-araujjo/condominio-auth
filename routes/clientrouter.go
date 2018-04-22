@@ -6,8 +6,8 @@ import (
 	"github.com/gabriel-araujjo/condominio-auth/errors"
 	"net/http"
 	"github.com/gabriel-araujjo/condominio-auth/auth"
-	"github.com/dgrijalva/jwt-go"
 	"strings"
+	"github.com/gabriel-araujjo/condominio-auth/domain"
 )
 
 type ClientRouter struct {
@@ -25,8 +25,8 @@ func (e *ClientRouter) Auth(c *gin.Context)  {
 		return
 	}
 
-	c.String(http.StatusOK, e.jwt.Sign(jwt.MapClaims{
-		"client_id": pubId,
+	c.String(http.StatusOK, e.jwt.Sign(&domain.Claims{
+		Audience: pubId,
 	}))
 }
 
