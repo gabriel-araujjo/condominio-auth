@@ -27,6 +27,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/gabriel-araujjo/psql-versioning"
+  packages = ["."]
+  revision = "3584fc99ab234738d235d25e26fe255a0aa4b9ce"
+
+[[projects]]
+  branch = "master"
   name = "github.com/gabriel-araujjo/versioned-database"
   packages = ["."]
   revision = "60373ceec8dc08023889578a4f7fd73f39f6846e"
@@ -58,6 +64,15 @@
   packages = ["proto"]
   revision = "925541529c1fa6821df4e44ce2723319eb2be768"
   version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "oid"
+  ]
+  revision = "d34b9ff171c21ad295489235aec8b6626023cd04"
 
 [[projects]]
   name = "github.com/mattn/go-isatty"
@@ -98,6 +113,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5e7e88668041d3ee42db686c937b26b968426691c184ddb096e94d3f80badf07"
+  inputs-digest = "00ed591e32e6bfe165b87a41a65428dd5081ba90d46b39f207ff57440f001dde"
   solver-name = "gps-cdcl"
   solver-version = 1
