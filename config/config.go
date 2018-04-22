@@ -73,11 +73,11 @@ func DefaultConfig() *Config {
 			TokenDriver     string
 			TokenDNS		string
 		}{
-			Driver:          getEnv("DB_DRIVER", "postgres"),
-			DNS:             getEnv("DB_DATA_SOURCE_NAME", ""),
-			VersionStrategy: getEnv("DB_VERSION_STRATEGY", "psql-versioning"),
-			TokenDriver:     getEnv("DB_TOKEN_DRIVER", "mongo"),
-			TokenDNS:		 getEnv("DB_TOKEN_DATA_SOURCE_NAME", ""),
+			Driver:          getEnv("DATABASE_DRIVER", "postgres"),
+			DNS:             getEnv("DATABASE_URL", ""),
+			VersionStrategy: getEnv("DATABASE_VERSION_STRATEGY", "psql-versioning"),
+			TokenDriver:     getEnv("DATABASE_TOKEN_DRIVER", "mongo"),
+			TokenDNS:		 getEnv("DATABASE_TOKEN_URL", ""),
 		},
 		Jwt: struct {
 			SignatureAlgorithm string
