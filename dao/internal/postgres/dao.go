@@ -2,9 +2,10 @@ package postgres
 
 import (
 	"database/sql"
+	"io"
+
 	"github.com/gabriel-araujjo/condominio-auth/config"
 	"github.com/gabriel-araujjo/condominio-auth/dao/daos"
-	"io"
 	// Versioning strategy
 	_ "github.com/gabriel-araujjo/psql-versioning"
 	"github.com/gabriel-araujjo/versioned-database"
@@ -14,7 +15,7 @@ import (
 
 // NewDao creates a dao following the passed config
 func NewDao(conf *config.Config) (daos.UserDao, daos.ClientDao, io.Closer, error) {
-	db, err := sql.Open(conf.Dao.Driver, conf.Dao.DNS)
+	db, err := sql.Open(conf.Dao.Driver, conf.Dao.URI)
 	if err != nil {
 		return nil, nil, nil, err
 	}

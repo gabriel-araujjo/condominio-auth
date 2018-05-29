@@ -5,13 +5,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ConfigRoutes(router gin.IRouter, dao *dao.Dao) {
-	user := &UserRouter{dao}
+func ConfigureEngine(router gin.IRouter, dao *dao.Dao) {
+	user := &userRouter{dao}
+	oidc := &oidcRouter{}
 
-	router.POST("/auth", user.Auth)
-	router.GET("/user/:id", user.Get)
-	router.POST("/user", user.Create)
-	router.DELETE("/user/:id", user.Delete)
+	router.GET("/oidc/auth", oidc.auth)
+	router.POST("/oidc/auth", oidc.auth)
+	router.POST("/user/login", user.login)
+	router.GET("/user/:id", user.get)
+	router.POST("/user", user.create)
+	router.DELETE("/user/:id", user.delete)
 
 	//client := &ClientRouter{dao}
 	//router.GET("/client/token", )

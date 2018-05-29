@@ -70,3 +70,7 @@ required = ["github.com/lib/pq", "github.com/gabriel-araujjo/psql-versioning"]
 [[constraint]]
   branch = "master"
   name = "github.com/lib/pq"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/gin-gonic/contrib"
