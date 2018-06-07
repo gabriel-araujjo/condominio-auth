@@ -2,30 +2,25 @@ package mock
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/gabriel-araujjo/condominio-auth/config"
 	"github.com/gabriel-araujjo/condominio-auth/domain"
-	"os"
 )
 
+// InvalidDBConfig returns a Config with Dao.Driver field set to "Invalid"
 func InvalidDBConfig() *config.Config {
 	return &config.Config{
-		Dao: struct {
-			Driver          string
-			DNS             string
-			VersionStrategy string
-		}{Driver: "invalid", DNS: "", VersionStrategy: "version1"},
+		Dao: config.Dao{Driver: "invalid", URI: "", VersionStrategy: "version1"},
 	}
 }
 
+// FakeDBConfig returns a Config with Dao.Driver set to a real postgres database used for testing
 func FakeDBConfig() *config.Config {
 	return &config.Config{
-		Dao: struct {
-			Driver          string
-			DNS             string
-			VersionStrategy string
-		}{
+		Dao: config.Dao{
 			Driver: "postgres",
-			DNS: fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+			URI: fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 				os.Getenv("POSTGRES_HOST"),
 				os.Getenv("POSTGRES_PORT"),
 				os.Getenv("POSTGRES_USER"),

@@ -1,4 +1,4 @@
-package mock
+package test
 
 import (
 	"net/http"
@@ -8,6 +8,12 @@ type MockResponseWriter struct {
 	Head   http.Header
 	Body   []byte
 	Status int
+}
+
+func NewMoockWriter() *MockResponseWriter {
+	return &MockResponseWriter{
+		Head: make(map[string][]string),
+	}
 }
 
 func (w *MockResponseWriter) Header() http.Header {

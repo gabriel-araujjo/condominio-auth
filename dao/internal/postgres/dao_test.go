@@ -1,12 +1,13 @@
 package postgres
 
 import (
-	"gopkg.in/DATA-DOG/go-sqlmock.v1"
+	"database/sql"
 	"reflect"
 	"testing"
-	"./mock"
+
+	sqlmock "github.com/DATA-DOG/go-sqlmock"
+	"github.com/gabriel-araujjo/condominio-auth/dao/internal/postgres/mock"
 	"github.com/gabriel-araujjo/versioned-database"
-	"database/sql"
 )
 
 func TestNewDao(t *testing.T) {
@@ -21,8 +22,8 @@ func TestNewDao(t *testing.T) {
 		expectCommitedTx(&m)
 		userDao, clientDao, closer, err := newDaoInternal(db, mock.SchemeOK())
 
-		wantedUserDao := &userDaoPG{db:db}
-		wantedClientDao := &clientDaoPG{db:db}
+		wantedUserDao := &userDaoPG{db: db}
+		wantedClientDao := &clientDaoPG{db: db}
 
 		if err != nil {
 			t.Errorf("newdao: err should be nil instead of %q", err)
@@ -58,14 +59,14 @@ func TestNewDao(t *testing.T) {
 	})
 
 	t.Run("Integration", func(t *testing.T) {
-		tests := []struct{
-			name string
+		tests := []struct {
+			name   string
 			mocker func() (version.Scheme, func() bool)
 		}{{
-			name: "SchemeCreation",
+			name:   "SchemeCreation",
 			mocker: mock.CreationScheme,
-		},{
-			name: "SchemeUpdate",
+		}, {
+			name:   "SchemeUpdate",
 			mocker: mock.UpdatingScheme,
 		}}
 
@@ -109,12 +110,12 @@ func TestNewDao(t *testing.T) {
 	})
 }
 
-func expectCommitedTx(m *sqlmock.Sqlmock)  {
+func expectCommitedTx(m *sqlmock.Sqlmock) {
 	(*m).ExpectBegin()
 	(*m).ExpectCommit()
 }
 
-func expectRollbackTx(m *sqlmock.Sqlmock)  {
+func expectRollbackTx(m *sqlmock.Sqlmock) {
 	(*m).ExpectBegin()
 	(*m).ExpectRollback()
 }

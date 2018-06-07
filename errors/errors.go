@@ -1,32 +1,28 @@
-package httperrors
+package errors
 
 import (
-	"github.com/gin-gonic/gin"
-	"errors"
+	"encoding/json"
 	"net/http"
 )
 
-const (
-	ErrNotFound gin.ErrorType = 1 << 50 + http.StatusNotFound
-	ErrForbidden gin.ErrorType = 1 << 50 + http.StatusForbidden
-	ErrPreconditionFailed gin.ErrorType = 1 << 50 + http.StatusPreconditionFailed
-)
-
-func NotFound(message string) *gin.Error {
-	return err(ErrNotFound, message)
+type errorMessage struct {
+	Message string `json:"message"`
 }
 
-func Forbidden(message string) *gin.Error {
-	return err(ErrForbidden, message)
-}
-
-func PreconditionFailed(message string) *gin.Error {
-	return err(ErrPreconditionFailed, message)
-}
-
-func err(code gin.ErrorType, msg string) *gin.Error {
-	return &gin.Error{
-		Type: code,
-		Err: errors.New(msg),
+// WriteErrorWithCode sends an error back with the specified status code
+func WriteErrorWithCode(w http.ResponseWriter, status int, errToSend interface{}) (int, error) {
+	w.WriteHeader(status)
+	if message, ok := errToSend.(string); ok {
+		return writeError(w, &errorMessage{message})
 	}
+	return writeError(w, errToSend)
+}
+
+func writeError(w http.ResponseWriter, errToSend interface{}) (int, error) {
+	data, err := json.Marshal(errToSend)
+	if err != nil {
+		return 0, err
+	}
+	w.Header().Set("Content-Type", "application/json")
+	return w.Write(data)
 }

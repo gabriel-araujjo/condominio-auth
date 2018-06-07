@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  name = "github.com/DATA-DOG/go-sqlmock"
+  packages = ["."]
+  revision = "d76b18b42f285b792bf985118980ce9eacea9d10"
+  version = "v1.3.0"
+
+[[projects]]
   name = "github.com/boj/redistore"
   packages = ["."]
   revision = "fc113767cd6b051980f260d6dbe84b2740c46ab0"
@@ -15,15 +21,15 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/gabriel-araujjo/base62"
-  packages = ["."]
-  revision = "03f870236f9059ebb34129cb6150e735f8750672"
-
-[[projects]]
-  branch = "master"
   name = "github.com/gabriel-araujjo/go-jsonpointer"
   packages = ["."]
   revision = "0480215403db768c5bf6db30d82908043c58422c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/gabriel-araujjo/go-jws"
+  packages = ["."]
+  revision = "c004a031cc1a4a0d45813a8cb70a31d261fc7bad"
 
 [[projects]]
   branch = "master"
@@ -57,12 +63,6 @@
   name = "github.com/gin-contrib/sse"
   packages = ["."]
   revision = "22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/gin-gonic/contrib"
-  packages = ["sessions"]
-  revision = "6ea35d32286ce194572a0dc2a3398aac0091228d"
 
 [[projects]]
   name = "github.com/gin-gonic/gin"
@@ -152,6 +152,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "db25f88217648322b7f31d419d6a9dc771837d573633709e06f366a80c508dd2"
+  inputs-digest = "617f79f37faea2d908f350cd4f689513f6d1d925f2f1253c2963c840a6cac635"
   solver-name = "gps-cdcl"
   solver-version = 1

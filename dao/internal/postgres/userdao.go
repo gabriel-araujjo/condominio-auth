@@ -355,10 +355,10 @@ func (d *userDaoPG) Auth(credential string, password string) (int64, error) {
 func safeString(url *url.URL) *string {
 	if url == nil {
 		return nil
-	} else {
-		s := url.String()
-		return &s
 	}
+
+	s := url.String()
+	return &s
 }
 
 func normalizeString(s string) *string {

@@ -7,7 +7,6 @@ import (
 	"github.com/gabriel-araujjo/condominio-auth/auth"
 	"github.com/gabriel-araujjo/condominio-auth/dao"
 	"github.com/gabriel-araujjo/condominio-auth/domain"
-	"github.com/gabriel-araujjo/condominio-auth/errors"
 	"github.com/gin-gonic/gin"
 )
 

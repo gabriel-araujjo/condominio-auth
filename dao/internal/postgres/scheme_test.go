@@ -1,13 +1,14 @@
 package postgres
 
 import (
-	"testing"
-	"github.com/gabriel-araujjo/condominio-auth/dao/internal/postgres/postgres/mock"
 	"database/sql"
-	"fmt"
-	"github.com/gabriel-araujjo/condominio-auth/config"
-	"gopkg.in/DATA-DOG/go-sqlmock.v1"
 	"errors"
+	"fmt"
+	"testing"
+
+	sqlmock "github.com/DATA-DOG/go-sqlmock"
+	"github.com/gabriel-araujjo/condominio-auth/config"
+	"github.com/gabriel-araujjo/condominio-auth/dao/internal/postgres/mock"
 	"github.com/gabriel-araujjo/condominio-auth/domain"
 )
 
@@ -33,19 +34,19 @@ var tableNames = []string{
 	"client",
 }
 
-var someErr = errors.New("some err")
+var errFoo = errors.New("some err")
 
 func TestScheme(t *testing.T) {
 	t.Run("OnCreate", func(t *testing.T) {
 		conf := mock.FakeDBConfig()
-		db, err := sql.Open(conf.Dao.Driver, conf.Dao.DNS)
+		db, err := sql.Open(conf.Dao.Driver, conf.Dao.URI)
 
 		cleanDB(t, db)
 
 		if err != nil {
 			t.Fatalf("can't initialize Fake DB. err = %q", err)
 		}
-		s := scheme{conf:conf}
+		s := scheme{conf: conf}
 
 		err = s.OnCreate(db)
 
@@ -118,10 +119,10 @@ func TestScheme(t *testing.T) {
 
 	t.Run("ExecutionError", func(t *testing.T) {
 		db, m, _ := sqlmock.New()
-		m.ExpectExec(".*").WillReturnError(someErr)
+		m.ExpectExec(".*").WillReturnError(errFoo)
 
 		s := &scheme{}
-		if err:= s.OnCreate(db); err != someErr {
+		if err := s.OnCreate(db); err != errFoo {
 			t.Errorf("should return 'some error' instead of %q", err)
 		}
 	})
@@ -130,23 +131,23 @@ func TestScheme(t *testing.T) {
 		db, m, _ := sqlmock.New()
 		r := sqlmock.NewResult(0, 0)
 		m.ExpectExec(".*").WillReturnResult(r)
-		m.ExpectQuery("INSERT.*").WillReturnError(someErr)
+		m.ExpectQuery("INSERT.*").WillReturnError(errFoo)
 
 		conf := &config.Config{
-			Clients:[]*domain.Client {{
+			Clients: []*domain.Client{{
 				Name:     "fake1",
 				PublicId: "1",
 				Secret:   "1",
 			}},
 		}
-		s := &scheme{conf:conf}
-		if err:= s.OnCreate(db); err != someErr {
+		s := &scheme{conf: conf}
+		if err := s.OnCreate(db); err != errFoo {
 			t.Errorf("should return 'some error' instead of %q", err)
 		}
 	})
 
 	t.Run("OnUpdate", func(t *testing.T) {
-		s := scheme{conf:nil}
+		s := scheme{conf: nil}
 		err := s.OnUpdate(nil, 0)
 
 		if err != nil {
@@ -155,7 +156,7 @@ func TestScheme(t *testing.T) {
 	})
 
 	t.Run("Version", func(t *testing.T) {
-		s := scheme{conf:nil}
+		s := scheme{conf: nil}
 		if s.Version() <= 0 {
 			t.Errorf("scheme.Version() should return a integer greater then zero instead of %d", s.Version())
 		}
@@ -167,11 +168,7 @@ func TestScheme(t *testing.T) {
 	})
 
 	t.Run("VersionStrategy", func(t *testing.T) {
-		conf := &config.Config{Dao: struct {
-			Driver          string
-			DNS             string
-			VersionStrategy string
-		}{VersionStrategy: "strategy"}}
+		conf := &config.Config{Dao: config.Dao{VersionStrategy: "strategy"}}
 		s := scheme{conf: conf}
 
 		if s.VersionStrategy() != conf.Dao.VersionStrategy {

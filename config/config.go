@@ -15,26 +15,42 @@ import (
 
 // Config the app config
 type Config struct {
-	Dao struct {
-		Driver          string
-		URI             string
-		VersionStrategy string
-		TokenDriver     string
-		TokenURI        string
-	}
+	Dao     Dao
 	Clients []*domain.Client
-	Jwt     struct {
-		SignatureAlgorithm string
-		VerifyKey          interface{}
-		SignKey            interface{}
-	}
-	Sessions struct {
-		StoreType          string
-		StoreURI           string
-		MaxConnections     int
-		Name               string
-		CookieCodecHashKey []byte
-	}
+	Jwt     Jwt
+	Session Session
+}
+
+// Dao store config about Dao
+type Dao struct {
+	Driver          string
+	URI             string
+	VersionStrategy string
+	TokenDriver     string
+	TokenURI        string
+}
+
+// Jwt store config about Jwt tokens
+type Jwt struct {
+	SignatureAlgorithm string
+	VerifyKey          interface{}
+	SignKey            interface{}
+}
+
+// Session store configuration about session
+type Session struct {
+	// StoreType is the type of the uri
+	StoreType string
+	// SoreURI is the identifier of the store
+	StoreURI string
+	// PoolSize is the maximum number of idle connections to store
+	// Valid on redis store type
+	PoolSize int
+	// CookieName is the name of the cookie stored on client
+	CookieName string
+	// HashKey is used to authenticate the cookie value using HMAC.
+	// It is recommended to use a key with 32 or 64 bytes.
+	HashKey []byte
 }
 
 func getEnv(name string, fallback string) (env string) {
@@ -95,24 +111,14 @@ func mustDecodeHex(hexString string) []byte {
 func DefaultConfig() *Config {
 
 	return &Config{
-		Dao: struct {
-			Driver          string
-			URI             string
-			VersionStrategy string
-			TokenDriver     string
-			TokenURI        string
-		}{
+		Dao: Dao{
 			Driver:          getEnv("DATABASE_DRIVER", "postgres"),
 			URI:             getEnv("DATABASE_URL", ""),
 			VersionStrategy: getEnv("DATABASE_VERSION_STRATEGY", "psql-versioning"),
 			TokenDriver:     getEnv("DATABASE_TOKEN_DRIVER", "mongo"),
 			TokenURI:        getEnv("DATABASE_TOKEN_URL", ""),
 		},
-		Jwt: struct {
-			SignatureAlgorithm string
-			VerifyKey          interface{}
-			SignKey            interface{}
-		}{
+		Jwt: Jwt{
 			SignatureAlgorithm: getEnv("JWT_ALG", "RS512"),
 			VerifyKey:          getVerifyKey(),
 			SignKey:            getSignKey(),
@@ -124,18 +130,12 @@ func DefaultConfig() *Config {
 				Secret:   "64db530fafdc40759c54e1a520a86d0e13e786b3ba215050dbc870fa781651b6",
 			},
 		},
-		Sessions: struct {
-			StoreType          string
-			StoreURI           string
-			MaxConnections     int
-			Name               string
-			CookieCodecHashKey []byte
-		}{
-			StoreType:      getEnv("SESSIONS_STORE_TYPE", "redis"),
-			StoreURI:       getEnv("SESSIONS_STORE_URL", ""),
-			MaxConnections: mustParseInt(getEnv("SESSIONS_STORE_MAX_CONN", "10")),
-			Name:           "sessions",
-			CookieCodecHashKey: mustDecodeHex(getEnv("COOKIE_CODEC_HASH_KEY",
+		Session: Session{
+			StoreType:  getEnv("SESSIONS_STORE_TYPE", "redis"),
+			StoreURI:   getEnv("SESSIONS_STORE_URL", ""),
+			PoolSize:   mustParseInt(getEnv("SESSIONS_STORE_POOL_SIZE", "10")),
+			CookieName: "sessions",
+			HashKey: mustDecodeHex(getEnv("COOKIE_CODEC_HASH_KEY",
 				"75625f538a4a5431762b96263e2762fb1cd8af1a3326c4468aaa9a7f336ed0ccf27dfd59167f1dd64aa28074ef87726b0c1f7f7d68fedd6f825e5323dba23280")),
 		},
 	}

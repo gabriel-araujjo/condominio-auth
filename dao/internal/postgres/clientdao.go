@@ -2,8 +2,9 @@ package postgres
 
 import (
 	"database/sql"
-	"github.com/gabriel-araujjo/condominio-auth/domain"
 	"errors"
+
+	"github.com/gabriel-araujjo/condominio-auth/domain"
 )
 
 type clientDaoPG struct {
@@ -11,7 +12,7 @@ type clientDaoPG struct {
 	getStmt *sql.Stmt
 }
 
-func (d *clientDaoPG) lazyPrepare()  {
+func (d *clientDaoPG) lazyPrepare() {
 	if d.getStmt == nil {
 		var e error
 		d.getStmt, e = d.db.Prepare(`
@@ -38,11 +39,11 @@ func (d *clientDaoPG) Update(u *domain.Client) error {
 	panic("implement me")
 }
 
-func (d *clientDaoPG) Get(publicId string) (*domain.Client, error) {
+func (d *clientDaoPG) Get(publicID string) (*domain.Client, error) {
 	d.lazyPrepare()
 
 	client := &domain.Client{}
-	row := d.getStmt.QueryRow(publicId)
+	row := d.getStmt.QueryRow(publicID)
 
 	err := row.Scan(&client.ID, &client.Name, &client.PublicId, &client.Secret)
 	if err != nil {

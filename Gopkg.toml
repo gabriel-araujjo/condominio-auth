@@ -72,5 +72,9 @@ required = ["github.com/lib/pq", "github.com/gabriel-araujjo/psql-versioning"]
   name = "github.com/lib/pq"
 
 [[constraint]]
+  name = "github.com/DATA-DOG/go-sqlmock"
+  version = "^1.3.0"
+
+[[constraint]]
   branch = "master"
-  name = "github.com/gin-gonic/contrib"
+  name = "github.com/gabriel-araujjo/go-jws"
