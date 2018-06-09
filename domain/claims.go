@@ -1,24 +1,15 @@
 package domain
 
-import "errors"
+import (
+	"strings"
+
+	"github.com/dgrijalva/jwt-go"
+)
 
 // Claims is a jwt as defined in https://tools.ietf.org/html/rfc7519
 // with some useful claims
 type Claims struct {
-	// ID is the id of the token
-	ID int64 `json:"jti"`
-	// Issuer is the url of this service
-	Issuer string `json:"iss"`
-	// Audience is the id of the client that require the token
-	Audience string `json:"aud"`
-	// Subject identifier, aka user id
-	Subject string `json:"sub"`
-	// ExpirationTime is the end of the token's period of validity
-	ExpirationTime int64 `json:"exp"`
-	// NotBefore is the date from which the token is valid in unix time
-	NotBefore int64 `json:"nbf"`
-	// IssuedAt is the creation data of the token
-	IssuedAt int64 `json:"ait"`
+	jwt.StandardClaims
 	// AuthTime is the time when the End-User authentication occurred
 	AuthTime int64 `json:"auth_time"`
 	// Nonce is sent by client
@@ -36,12 +27,37 @@ type Claims struct {
 	// Locale is the user's
 	Locale string `json:"locale"`
 	// Roles has the roles allowed
-	Scope map[string]interface{} `json:"scope"`
+	Scope []string `json:"scope"`
 }
 
-func (c *Claims) Valid() error {
-	return errors.New("unimplemented validation")
+// ContainScope checks whether this claim cover the scope passed
+func (c *Claims) ContainScope(scope ...string) bool {
+	for _, s := range scope {
+		if binarySearch(c.Scope, s) == -1 {
+			return false
+		}
+	}
+	return true
 }
 
+func binarySearch(target_map []string, value string) int {
 
+	left := 0
+	right := len(target_map)
 
+	for left < right {
+		half := (left + right) / 2
+		comp := strings.Compare(value, target_map[half])
+
+		if comp == 0 {
+			return half
+		} else if comp < 0 {
+			right = half - 1
+		} else {
+			left = half + 1
+		}
+
+	}
+
+	return -1
+}

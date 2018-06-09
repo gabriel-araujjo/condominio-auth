@@ -95,12 +95,12 @@ func TestScheme(t *testing.T) {
 
 		t.Run("PreRegisteredClients", func(t *testing.T) {
 			for _, client := range conf.Clients {
-				rows, err := db.Query(`SELECT * FROM "client" WHERE public_id = $1`, client.PublicId)
+				rows, err := db.Query(`SELECT * FROM "client" WHERE public_id = $1`, client.PublicID)
 				if err != nil {
 					t.Error(err)
 				}
 				if rows == nil {
-					t.Fatalf("no client was returned for public_id = %q", client.PublicId)
+					t.Fatalf("no client was returned for public_id = %q", client.PublicID)
 				}
 				if !rows.Next() {
 					t.Errorf("No entry for client %q", client.Name)
@@ -136,7 +136,7 @@ func TestScheme(t *testing.T) {
 		conf := &config.Config{
 			Clients: []*domain.Client{{
 				Name:     "fake1",
-				PublicId: "1",
+				PublicID: "1",
 				Secret:   "1",
 			}},
 		}

@@ -299,7 +299,7 @@ func TestUserDaoMemory(t *testing.T) {
 
 		for _, tt := range cases {
 			t.Run(tt.name, func(t *testing.T) {
-				id, err := userDao.Auth(tt.credential, tt.password)
+				id, err := userDao.Authenticate(tt.credential, tt.password)
 				if tt.expectErr {
 					if err == nil {
 						t.Errorf("test %q: err should be returned", tt.name)

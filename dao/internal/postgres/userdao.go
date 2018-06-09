@@ -343,13 +343,18 @@ func (d *userDaoPG) Get(id int64) (*domain.User, error) {
 	return &u, nil
 }
 
-func (d *userDaoPG) Auth(credential string, password string) (int64, error) {
+func (d *userDaoPG) Authenticate(credential string, password string) (int64, error) {
 	d.lazyPrepare()
 	var id int64
 	cpf, _ := strconv.ParseInt(credential, 10, 64)
 
 	err := d.stmts["auth"].QueryRow(credential, cpf, password).Scan(&id)
 	return id, err
+}
+
+func (d *userDaoPG) Authorize(*domain.ClientAuthorizationRequest) error {
+	//TODO
+	return nil
 }
 
 func safeString(url *url.URL) *string {

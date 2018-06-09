@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"database/sql"
+
 	"github.com/gabriel-araujjo/condominio-auth/config"
 )
 
@@ -152,6 +153,20 @@ CREATE TABLE "client" (
 	secret TEXT NOT NULL
 );
 
+CREATE TABLE "scope" (
+  scope_id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL UNIQUE,
+  description TEXT
+);
+CREATE UNIQUE INDEX permission_name_idx ON "permission" (name); 
+
+CREATE TABLE "authorization" (
+  client_id INTEGER REFERENCES "client"(client_id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES "user"(user_id) ON DELETE CASCADE,
+  scope_id INTEGER REFERENCES "user"(user_id) ON DELETE CASCADE,
+    CONSTRAINT authorization_pk PRIMARY KEY(client_id, user_id, scope_id)
+);
+
 CREATE VIEW "email_lookup" AS
 	SELECT u.user_id, u.email FROM "user" u
 	UNION ALL SELECT e.user_id, e.email FROM "user_email" e;
@@ -186,7 +201,7 @@ FOR EACH ROW EXECUTE PROCEDURE hash_password();
 			VALUES ($1, $2, $3)
 			RETURNING "client".client_id
 		`,
-			c.Name, c.PublicId, c.Secret).Scan(&c.ID)
+			c.Name, c.PublicID, c.Secret).Scan(&c.ID)
 		if err != nil {
 			return
 		}

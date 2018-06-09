@@ -41,7 +41,7 @@ func TestRedisConnection(t *testing.T) {
 		t.Fatalf("store can't save session due to %q", err.Error())
 	}
 
-	returnedSession, err := store.Get(req, session.Name())
+	returnedSession, err := store.Get(req, "some-name")
 	if err != nil {
 		t.Fatalf("store can't retrieve session due to %q", err.Error())
 	}

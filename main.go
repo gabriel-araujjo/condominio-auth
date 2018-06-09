@@ -3,7 +3,6 @@ package app
 import (
 	"github.com/gabriel-araujjo/condominio-auth/config"
 	"github.com/gabriel-araujjo/condominio-auth/dao"
-	"github.com/gabriel-araujjo/condominio-auth/routes"
 	"github.com/gabriel-araujjo/condominio-auth/sessions"
 	"github.com/gin-gonic/gin"
 )
@@ -34,8 +33,8 @@ func main() {
 
 	engine := gin.Default()
 
-	v1 := engine.Group("/api/v1")
-	routes.ConfigureEngine(v1, db)
+	// v1 := engine.Group("/api/v1")
+	// routes.ConfigureEngine(v1, db)
 
 	engine.Run()
 }

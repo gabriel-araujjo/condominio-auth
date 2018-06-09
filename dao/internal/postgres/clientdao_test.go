@@ -24,7 +24,7 @@ func TestClientDaoPG_Get(t *testing.T) {
 	}
 
 	t.Run("ValidClient", func(t *testing.T) {
-		c, err := clientDao.Get(conf.Clients[0].PublicId)
+		c, err := clientDao.Get(conf.Clients[0].PublicID)
 		if err != nil {
 			t.Errorf("unexpected error %q", err)
 		}

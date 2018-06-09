@@ -45,7 +45,7 @@ func (d *clientDaoPG) Get(publicID string) (*domain.Client, error) {
 	client := &domain.Client{}
 	row := d.getStmt.QueryRow(publicID)
 
-	err := row.Scan(&client.ID, &client.Name, &client.PublicId, &client.Secret)
+	err := row.Scan(&client.ID, &client.Name, &client.PublicID, &client.Secret)
 	if err != nil {
 		return nil, err
 	}
@@ -58,5 +58,10 @@ func (d *clientDaoPG) Auth(publicID string, secret string) (string, error) {
 	if err != nil || client.Secret != secret {
 		return "", errors.New("unauthorized client")
 	}
-	return client.PublicId, nil
+	return client.PublicID, nil
+}
+
+func (d *clientDaoPG) GetAuthorizedScopesByUser(publicID string, userID int64) []domain.Permission {
+	//TODO:
+	return nil
 }

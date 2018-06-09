@@ -126,7 +126,7 @@ func DefaultConfig() *Config {
 		Clients: []*domain.Client{
 			{
 				Name:     "CondominiumWeb",
-				PublicId: "7535b92fcac0ad06d03d",
+				PublicID: "7535b92fcac0ad06d03d",
 				Secret:   "64db530fafdc40759c54e1a520a86d0e13e786b3ba215050dbc870fa781651b6",
 			},
 		},

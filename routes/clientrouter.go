@@ -4,39 +4,43 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/gabriel-araujjo/condominio-auth/auth"
+	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gabriel-araujjo/condominio-auth/security"
+
 	"github.com/gabriel-araujjo/condominio-auth/dao"
 	"github.com/gabriel-araujjo/condominio-auth/domain"
-	"github.com/gin-gonic/gin"
+	"github.com/gabriel-araujjo/condominio-auth/errors"
 )
 
 type ClientRouter struct {
 	dao *dao.Dao
-	jwt *auth.Auth
+	jwt *security.Notary
 }
 
-func (e *ClientRouter) Auth(c *gin.Context) {
-	pubID := c.Query("pub_id")
-	secret := c.Query("secret")
+func (e *ClientRouter) Auth(w http.ResponseWriter, req *http.Request) {
+	req.ParseForm()
+	pubID := req.Form.Get("pub_id") // c.Query("pub_id")
+	secret := req.Form.Get("secret")
 
 	pubID, err := e.dao.Client.Auth(pubID, secret)
 	if err != nil {
-		c.Error(httperrors.Forbidden("unauthorized client"))
+		errors.WriteErrorWithCode(w, http.StatusUnauthorized, "Unauthorized")
 		return
 	}
 
-	c.String(http.StatusOK, e.jwt.Sign(&domain.Claims{
-		Audience: pubID,
-	}))
+	w.Write([]byte(e.jwt.SignClaims(&domain.Claims{
+		StandardClaims: jwt.StandardClaims{
+			Audience: pubID,
+		},
+	})))
 }
 
-func (e *ClientRouter) AuthJwt(c *gin.Context) {
-	authHead := c.GetHeader("Authorization")
+func (e *ClientRouter) AuthJwt(w http.ResponseWriter, req *http.Request) {
+	authHead := req.Header.Get("Authorization")
 	tokenString := strings.Trim(authHead, "Bearer ")
-	_ /*token*/, err := e.jwt.Verify(tokenString)
+	_ /*token*/, err := e.jwt.VerifyClaims(tokenString)
 	if err != nil {
-		c.Error(httperrors.Forbidden("unauthorized client"))
+		errors.WriteErrorWithCode(w, http.StatusUnauthorized, "Unauthorized")
 	}
 	// TODO: Register access of client
-	c.Next()
 }

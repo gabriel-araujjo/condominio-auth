@@ -23,7 +23,7 @@ func (c *userContext) login(w http.ResponseWriter, req *http.Request) {
 		errors.WriteErrorWithCode(w, http.StatusBadRequest, "cannot decode json")
 		return
 	}
-	userID, err := c.dao.User.Auth(params.Credential, params.Password)
+	userID, err := c.dao.User.Authenticate(params.Credential, params.Password)
 	if err != nil {
 		errors.WriteErrorWithCode(w, http.StatusUnauthorized, "unauthorized")
 		return

@@ -181,7 +181,7 @@ func (d *userDaoMemory) Get(id int64) (*domain.User, error) {
 	return (*d)[id-1], nil
 }
 
-func (d *userDaoMemory) Auth(credential string, password string) (int64, error) {
+func (d *userDaoMemory) Authenticate(credential string, password string) (int64, error) {
 	var user *domain.User
 	for i := range *d {
 		if (*d)[i].CPF == credential {
@@ -209,6 +209,11 @@ func (d *userDaoMemory) Auth(credential string, password string) (int64, error) 
 	}
 
 	return user.ID, nil
+}
+
+func (d *userDaoMemory) Authorize(*domain.ClientAuthorizationRequest) error {
+	// TODO
+	return nil
 }
 
 func getIndex(pointer *jsonpointer.JSONPointer, maxValue int) (idx int, err error) {

@@ -30,8 +30,8 @@ func FakeDBConfig() *config.Config {
 			VersionStrategy: "psql-versioning",
 		},
 		Clients: []*domain.Client{
-			{Name: "Fake Client 1", PublicId: "1", Secret: "1"},
-			{Name: "Fake Client 2", PublicId: "2", Secret: "2"},
+			{Name: "Fake Client 1", PublicID: "1", Secret: "1"},
+			{Name: "Fake Client 2", PublicID: "2", Secret: "2"},
 		},
 	}
 }
