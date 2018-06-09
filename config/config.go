@@ -13,31 +13,22 @@ import (
 	"github.com/gabriel-araujjo/condominio-auth/domain"
 )
 
-// Config the app config
+// Config stores the app config
 type Config struct {
 	Dao     Dao
 	Clients []*domain.Client
-	Jwt     Jwt
 	Session Session
+	Notary  Notary
 }
 
-// Dao store config about Dao
+// Dao stores config about Dao
 type Dao struct {
 	Driver          string
 	URI             string
 	VersionStrategy string
-	TokenDriver     string
-	TokenURI        string
 }
 
-// Jwt store config about Jwt tokens
-type Jwt struct {
-	SignatureAlgorithm string
-	VerifyKey          interface{}
-	SignKey            interface{}
-}
-
-// Session store configuration about session
+// Session stores configuration about session
 type Session struct {
 	// StoreType is the type of the uri
 	StoreType string
@@ -51,6 +42,15 @@ type Session struct {
 	// HashKey is used to authenticate the cookie value using HMAC.
 	// It is recommended to use a key with 32 or 64 bytes.
 	HashKey []byte
+}
+
+// Notary stores the Notary's blacklist config
+type Notary struct {
+	BlacklistType   string
+	BlacklistURI    string
+	JWTAlgorithm    string
+	JWTVerifyingKey interface{}
+	JWTSigningKey   interface{}
 }
 
 func getEnv(name string, fallback string) (env string) {
@@ -115,13 +115,6 @@ func DefaultConfig() *Config {
 			Driver:          getEnv("DATABASE_DRIVER", "postgres"),
 			URI:             getEnv("DATABASE_URL", ""),
 			VersionStrategy: getEnv("DATABASE_VERSION_STRATEGY", "psql-versioning"),
-			TokenDriver:     getEnv("DATABASE_TOKEN_DRIVER", "mongo"),
-			TokenURI:        getEnv("DATABASE_TOKEN_URL", ""),
-		},
-		Jwt: Jwt{
-			SignatureAlgorithm: getEnv("JWT_ALG", "RS512"),
-			VerifyKey:          getVerifyKey(),
-			SignKey:            getSignKey(),
 		},
 		Clients: []*domain.Client{
 			{
@@ -132,11 +125,18 @@ func DefaultConfig() *Config {
 		},
 		Session: Session{
 			StoreType:  getEnv("SESSIONS_STORE_TYPE", "redis"),
-			StoreURI:   getEnv("SESSIONS_STORE_URL", ""),
+			StoreURI:   getEnv("SESSIONS_STORE_URL", "redis:///0"),
 			PoolSize:   mustParseInt(getEnv("SESSIONS_STORE_POOL_SIZE", "10")),
 			CookieName: "sessions",
 			HashKey: mustDecodeHex(getEnv("COOKIE_CODEC_HASH_KEY",
 				"75625f538a4a5431762b96263e2762fb1cd8af1a3326c4468aaa9a7f336ed0ccf27dfd59167f1dd64aa28074ef87726b0c1f7f7d68fedd6f825e5323dba23280")),
+		},
+		Notary: Notary{
+			BlacklistType:   getEnv("BLACKLIST_TYPE", "redis"),
+			BlacklistURI:    getEnv("BLACKLIST_URI", "redis:///1"),
+			JWTAlgorithm:    getEnv("JWT_ALG", "RS512"),
+			JWTVerifyingKey: getVerifyKey(),
+			JWTSigningKey:   getSignKey(),
 		},
 	}
 }

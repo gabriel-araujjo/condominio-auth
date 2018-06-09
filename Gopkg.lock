@@ -27,12 +27,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/gabriel-araujjo/go-jws"
-  packages = ["."]
-  revision = "c004a031cc1a4a0d45813a8cb70a31d261fc7bad"
-
-[[projects]]
-  branch = "master"
   name = "github.com/gabriel-araujjo/json-patcher"
   packages = ["."]
   revision = "db14869bb44d43dcdd99efba3ba77bbb01540064"
@@ -85,6 +79,15 @@
   packages = ["proto"]
   revision = "925541529c1fa6821df4e44ce2723319eb2be768"
   version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/gomodule/redigo"
+  packages = [
+    "internal",
+    "redis"
+  ]
+  revision = "9c11da706d9b7902c6da69c592f75637793fe121"
+  version = "v2.0.0"
 
 [[projects]]
   name = "github.com/gorilla/context"
@@ -152,6 +155,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c11f51bc383e10335399c9d4d8d57a6445f9c5c5c399c4d7bba194bfb0019208"
+  inputs-digest = "a53da439d21759fd85fddcf8d5af598cb966bd2d1b9e7be19813906635eab8d3"
   solver-name = "gps-cdcl"
   solver-version = 1

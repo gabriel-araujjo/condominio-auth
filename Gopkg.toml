@@ -78,3 +78,11 @@ required = ["github.com/lib/pq", "github.com/gabriel-araujjo/psql-versioning"]
 [[constraint]]
   branch = "master"
   name = "github.com/gabriel-araujjo/go-jws"
+
+[[constraint]]
+  name = "github.com/mongodb/mongo-go-driver"
+  version = "0.0.6"
+
+[[constraint]]
+  name = "github.com/gomodule/redigo"
+  version = "2.0.0"
