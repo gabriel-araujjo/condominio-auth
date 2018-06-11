@@ -28,7 +28,7 @@ func (e *ClientRouter) Auth(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	w.Write([]byte(e.jwt.NewAccessTokenWithClaims(&domain.Claims{
+	w.Write([]byte(e.jwt.NewIDTokenWithClaims(&domain.Claims{
 		StandardClaims: jwt.StandardClaims{
 			Audience: pubID,
 		},
@@ -38,7 +38,7 @@ func (e *ClientRouter) Auth(w http.ResponseWriter, req *http.Request) {
 func (e *ClientRouter) AuthJwt(w http.ResponseWriter, req *http.Request) {
 	authHead := req.Header.Get("Authorization")
 	tokenString := strings.Trim(authHead, "Bearer ")
-	_ /*token*/, err := e.jwt.VerifyAccessToken(tokenString)
+	_ /*token*/, err := e.jwt.VerifyIDToken(tokenString)
 	if err != nil {
 		errors.WriteErrorWithCode(w, http.StatusUnauthorized, "Unauthorized")
 	}

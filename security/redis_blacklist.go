@@ -1,37 +1,76 @@
 package security
 
 import (
+	"errors"
 	"io"
 
 	"github.com/gabriel-araujjo/condominio-auth/config"
 	"github.com/gomodule/redigo/redis"
 )
 
-type redisBlacklist struct {
-	conn redis.Conn
+type redisTokenStore struct {
+	pool *redis.Pool
 }
 
-func (b *redisBlacklist) Add(tokenSignature string, expiresAt int64) error {
-	_, err := b.conn.Do("SET", tokenSignature, true)
-	if err != nil {
-		return err
+func (b *redisTokenStore) Add(token string, expiresAt int64, scope ...string) error {
+	conn := b.pool.Get()
+	defer conn.Close()
+	args := make([]interface{}, len(scope)+1)
+	args[0] = token
+	for i := range scope {
+		args[i+1] = scope[i]
 	}
-	_, err = b.conn.Do("EXPIREAT", tokenSignature, expiresAt)
-	if err != nil {
-		return err
-	}
-	return nil
+	conn.Send("SET", args...)
+	conn.Send("EXPIREAT", token, expiresAt)
+	return conn.Flush()
 }
 
-func (b *redisBlacklist) Contains(tokenSignature string) (bool, error) {
-	reply, err := b.conn.Do("GET", tokenSignature)
-	return reply == nil, err
+func (b *redisTokenStore) Get(token string) (scopes []string, err error) {
+	conn := b.pool.Get()
+	defer conn.Close()
+	result, err := conn.Do("SMEMBERS", token)
+	if err != nil {
+		return
+	}
+	setMembers, isArray := result.([]interface{})
+	if !isArray {
+		err = errors.New("unexpected type")
+		return
+	}
+
+	scopes = make([]string, len(setMembers))
+	var isString bool
+	for i := range setMembers {
+		scopes[i], isString = setMembers[i].(string)
+		if !isString {
+			err = errors.New("unexpected type")
+			return
+		}
+	}
+	return
 }
 
-func newRedisBlackist(config *config.Config) (Blacklist, io.Closer, error) {
-	conn, err := redis.DialURL(config.Notary.BlacklistURI)
-	if err != nil {
-		return nil, nil, err
+func (b *redisTokenStore) Contains(token string) (bool, error) {
+	conn := b.pool.Get()
+	defer conn.Close()
+	reply, err := conn.Do("EXISTS", token)
+	exists, _ := reply.(string)
+	return exists == "1", err
+}
+
+func (b *redisTokenStore) Remove(token string) error {
+	conn := b.pool.Get()
+	defer conn.Close()
+	_, err := conn.Do("DEL", token)
+	return err
+}
+
+func newRedisTokenStore(config *config.Config) (TokenStore, io.Closer, error) {
+	pool := &redis.Pool{
+		Dial: func() (redis.Conn, error) {
+			return redis.DialURL(config.Notary.TokenStoreURI)
+		},
+		MaxIdle: 10,
 	}
-	return &redisBlacklist{conn}, conn, nil
+	return &redisTokenStore{pool: pool}, pool, nil
 }

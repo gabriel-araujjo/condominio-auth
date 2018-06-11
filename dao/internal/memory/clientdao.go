@@ -27,7 +27,7 @@ func (d *clientDaoMemory) Auth(publicID string, secret string) (string, error) {
 	panic("implement me")
 }
 
-func (d *clientDaoMemory) GetAuthorizedScopesByUser(publicID string, userID int64) []domain.Permission {
+func (d *clientDaoMemory) GetAuthorizedScopesByUser(publicID string, userID int64) domain.Scope {
 	//TODO:
 	return nil
 }

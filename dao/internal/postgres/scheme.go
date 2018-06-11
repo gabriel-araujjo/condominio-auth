@@ -3,6 +3,7 @@ package postgres
 import (
 	"database/sql"
 
+	"github.com/gabriel-araujjo/base62"
 	"github.com/gabriel-araujjo/condominio-auth/config"
 )
 
@@ -147,9 +148,8 @@ CREATE TABLE "user_phone" (
 );
 
 CREATE TABLE "client" (
-	client_id SERIAL PRIMARY KEY,
+	client_id INTEGER PRIMARY KEY,
 	name TEXT NOT NULL UNIQUE,
-	public_id TEXT NOT NULL UNIQUE,
 	secret TEXT NOT NULL
 );
 
@@ -158,7 +158,7 @@ CREATE TABLE "scope" (
   name TEXT NOT NULL UNIQUE,
   description TEXT
 );
-CREATE UNIQUE INDEX permission_name_idx ON "permission" (name); 
+CREATE UNIQUE INDEX scope_name_idx ON "scope" (name); 
 
 CREATE TABLE "authorization" (
   client_id INTEGER REFERENCES "client"(client_id) ON DELETE CASCADE,
@@ -196,12 +196,14 @@ FOR EACH ROW EXECUTE PROCEDURE hash_password();
 	}
 
 	for _, c := range s.conf.Clients {
+		clientID, _ := base62.ParseUint(c.PublicID)
+		c.ID = int64(clientID)
 		err = db.QueryRow(`
-			INSERT INTO "client"(name, public_id, secret)
+			INSERT INTO "client"(client_id, name, secret)
 			VALUES ($1, $2, $3)
 			RETURNING "client".client_id
 		`,
-			c.Name, c.PublicID, c.Secret).Scan(&c.ID)
+			c.ID, c.Name, c.Secret).Scan(&c.ID)
 		if err != nil {
 			return
 		}

@@ -12,7 +12,7 @@ type ClientDao interface {
 	Update(u *domain.Client) error
 	Get(publicID string) (*domain.Client, error)
 	Auth(publicID string, secret string) (pubID string, err error)
-	GetAuthorizedScopesByUser(publicID string, userID int64) []domain.Permission
+	GetAuthorizedScopesByUser(publicID string, userID int64) domain.Scope
 }
 
 // UserDao manage all queries related to users
@@ -23,6 +23,7 @@ type UserDao interface {
 	Get(id int64) (*domain.User, error)
 	Authenticate(credential string, password string) (int64, error)
 	Authorize(*domain.ClientAuthorizationRequest) error
+	//GetAuthorizedScopeForClient(clientPublicID string) []domain.Permission
 }
 
 // TokenDao manage all queries related to users

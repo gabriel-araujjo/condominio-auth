@@ -32,6 +32,12 @@ func (m *Middleware) ThenHandler(next http.Handler) http.Handler {
 	return mw
 }
 
+func (m *Middleware) ThenFunc(next func(http.ResponseWriter, *http.Request)) http.Handler {
+	mw := newMiddlewareHandler(http.HandlerFunc(next))
+	mw.prev = m
+	return mw
+}
+
 func newMiddleware(f func(http.ResponseWriter, *http.Request) bool) *Middleware {
 	return &Middleware{serveHTTP: f, isShortcuted: true}
 }

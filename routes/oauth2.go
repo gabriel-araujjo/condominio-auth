@@ -11,15 +11,16 @@ import (
 )
 
 type oAuth2 struct {
+	*context
 	notary security.Notary
 }
 
 func (o *oAuth2) verifyTokenScope(accessToken string, scope ...string) bool {
-	claims, err := o.notary.VerifyAccessToken(accessToken)
+	claims, err := o.notary.VerifyIDToken(accessToken)
 	return err == nil && claims.ContainScope(scope...)
 }
 
-func (o *oAuth2) coverScope(scopes ...string) *Middleware {
+func (o *oAuth2) checkScope(scopes ...string) *Middleware {
 	return newMiddleware(func(w http.ResponseWriter, req *http.Request) bool {
 		fields := strings.Fields(req.Header.Get("Authorization"))
 		if len(fields) != 2 || !strings.EqualFold(fields[0], "Bearer") || !o.verifyTokenScope(fields[1], scopes...) {
@@ -29,6 +30,21 @@ func (o *oAuth2) coverScope(scopes ...string) *Middleware {
 		}
 		return false // continue
 	})
+}
+
+func (o *oAuth2) authorize(w http.ResponseWriter, req *http.Request) {
+	// req.ParseForm()
+	// redirectUri := req.Form.Get("redirect_uri")
+	// responseType := req.Form.Get("response_type")
+	// scope := req.Form.Get("scope")
+	// clientID := req.Form.Get("cleint_id")
+
+	// client, err := o.context.dao.Client.Get(clientID)
+
+	// userId, err := o.context.CurrentUserID(req)
+	// if err != nil {
+
+	// }
 }
 
 func (o *oAuth2) revokeAccess() *Middleware {

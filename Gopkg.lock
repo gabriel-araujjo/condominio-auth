@@ -21,6 +21,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/gabriel-araujjo/base62"
+  packages = ["."]
+  revision = "03f870236f9059ebb34129cb6150e735f8750672"
+
+[[projects]]
+  branch = "master"
   name = "github.com/gabriel-araujjo/go-jsonpointer"
   packages = ["."]
   revision = "0480215403db768c5bf6db30d82908043c58422c"
@@ -155,6 +161,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a53da439d21759fd85fddcf8d5af598cb966bd2d1b9e7be19813906635eab8d3"
+  inputs-digest = "0dd2f9a324f23f6d87fa2dc89afe2650959b1a06ec9e071fda386ced5527cfad"
   solver-name = "gps-cdcl"
   solver-version = 1

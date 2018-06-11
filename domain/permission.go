@@ -4,17 +4,12 @@ import (
 	"strings"
 )
 
-// Permission describe a permission which an user can grant to a clients
-type Permission struct {
-	ID          int64  `json:"id"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
+type Scope []string
 
 // ClientAuthorizationRequest stores data of authorization requests
 type ClientAuthorizationRequest struct {
 	clientPublicID string
-	Scopes         []string
+	Scopes         Scope
 }
 
 // NewClientAuthorizationRequest create an authorization

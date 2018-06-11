@@ -46,8 +46,8 @@ type Session struct {
 
 // Notary stores the Notary's blacklist config
 type Notary struct {
-	BlacklistType   string
-	BlacklistURI    string
+	TokenStoreType  string
+	TokenStoreURI   string
 	JWTAlgorithm    string
 	JWTVerifyingKey interface{}
 	JWTSigningKey   interface{}
@@ -119,7 +119,7 @@ func DefaultConfig() *Config {
 		Clients: []*domain.Client{
 			{
 				Name:     "CondominiumWeb",
-				PublicID: "7535b92fcac0ad06d03d",
+				PublicID: "7p0k9rmAak4",
 				Secret:   "64db530fafdc40759c54e1a520a86d0e13e786b3ba215050dbc870fa781651b6",
 			},
 		},
@@ -132,8 +132,8 @@ func DefaultConfig() *Config {
 				"75625f538a4a5431762b96263e2762fb1cd8af1a3326c4468aaa9a7f336ed0ccf27dfd59167f1dd64aa28074ef87726b0c1f7f7d68fedd6f825e5323dba23280")),
 		},
 		Notary: Notary{
-			BlacklistType:   getEnv("BLACKLIST_TYPE", "redis"),
-			BlacklistURI:    getEnv("BLACKLIST_URI", "redis:///1"),
+			TokenStoreType:  getEnv("TOKENSTORE_TYPE", "redis"),
+			TokenStoreURI:   getEnv("TOKENSTORE_URI", "redis:///1"),
 			JWTAlgorithm:    getEnv("JWT_ALG", "RS512"),
 			JWTVerifyingKey: getVerifyKey(),
 			JWTSigningKey:   getSignKey(),
