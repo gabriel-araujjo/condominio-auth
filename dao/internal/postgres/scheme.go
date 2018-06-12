@@ -155,15 +155,22 @@ CREATE TABLE "client" (
 
 CREATE TABLE "scope" (
   scope_id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL UNIQUE,
-  description TEXT
+  name TEXT NOT NULL UNIQUE
 );
-CREATE UNIQUE INDEX scope_name_idx ON "scope" (name); 
+CREATE UNIQUE INDEX scope_name_idx ON "scope" (name);
+CREATE OR REPLACE FUNCTION lowecase_name_on_insert() RETURNS trigger AS $lowecase_name_on_insert$
+    BEGIN        
+        NEW.name = LOWER(NEW.name);
+        RETURN NEW;
+    END;
+$lowecase_name_on_insert$ LANGUAGE plpgsql;
+CREATE TRIGGER lowecase_name_on_insert_trigger BEFORE INSERT OR UPDATE ON "scope"
+    FOR EACH ROW EXECUTE PROCEDURE lowecase_name_on_insert();
 
 CREATE TABLE "authorization" (
   client_id INTEGER REFERENCES "client"(client_id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES "user"(user_id) ON DELETE CASCADE,
-  scope_id INTEGER REFERENCES "user"(user_id) ON DELETE CASCADE,
+  scope_id INTEGER REFERENCES "scope"(scope_id) ON DELETE CASCADE,
     CONSTRAINT authorization_pk PRIMARY KEY(client_id, user_id, scope_id)
 );
 
