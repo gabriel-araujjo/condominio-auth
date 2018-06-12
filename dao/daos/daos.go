@@ -22,7 +22,7 @@ type UserDao interface {
 	Update(id int64, patch jp.Patch) error
 	Get(id int64) (*domain.User, error)
 	Authenticate(credential string, password string) (int64, error)
-	Authorize(*domain.ClientAuthorizationRequest) error
+	AuthorizeClient(userID int64, clientPublicID string, scope domain.Scope) error
 	//GetAuthorizedScopeForClient(clientPublicID string) []domain.Permission
 }
 

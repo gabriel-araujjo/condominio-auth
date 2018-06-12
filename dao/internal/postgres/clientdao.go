@@ -45,6 +45,15 @@ func newClientID() int64 {
 	return int64(timestamp | pid | c)
 }
 
+func convertPublicIDIntoClientID(publicID string) (int64, error) {
+	id, err := base62.ParseUint(publicID)
+	return int64(id), err
+}
+
+func convertClientIDIntoPublicID(clientID int64) string {
+	return base62.FormatUint(uint64(clientID))
+}
+
 type clientDaoPG struct {
 	db          *sql.DB
 	getStmt     *sql.Stmt
@@ -77,7 +86,7 @@ func (d *clientDaoPG) Create(c *domain.Client) error {
 		return err
 	}
 
-	c.PublicID = base62.FormatUint(uint64(clientID))
+	c.PublicID = convertClientIDIntoPublicID(clientID)
 
 	panic("implement me")
 }
@@ -93,7 +102,7 @@ func (d *clientDaoPG) Update(u *domain.Client) error {
 func (d *clientDaoPG) Get(publicID string) (*domain.Client, error) {
 	d.lazyPrepare()
 
-	clientID, err := base62.ParseUint(publicID)
+	clientID, err := convertPublicIDIntoClientID(publicID)
 	if err != nil {
 		return nil, fmt.Errorf("pg: cannot find client with publicId = %q", publicID)
 	}
@@ -122,7 +131,7 @@ func (d *clientDaoPG) Auth(publicID string, secret string) (string, error) {
 func (d *clientDaoPG) GetAuthorizedScopesByUser(publicID string, userID int64) domain.Scope {
 	d.lazyPrepare()
 
-	clientID, err := base62.ParseUint(publicID)
+	clientID, err := convertPublicIDIntoClientID(publicID)
 	if err != nil {
 		return nil
 	}

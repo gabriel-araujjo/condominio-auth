@@ -352,8 +352,18 @@ func (d *userDaoPG) Authenticate(credential string, password string) (int64, err
 	return id, err
 }
 
-func (d *userDaoPG) Authorize(*domain.ClientAuthorizationRequest) error {
-	//TODO
+func (d *userDaoPG) AuthorizeClient(userID int64, clientPublicID string, scope domain.Scope) error {
+	d.lazyPrepare()
+	clientID, err := convertPublicIDIntoClientID(clientPublicID)
+	if err != nil {
+		return errors.New("pg: invalid clientPublicID")
+	}
+
+	``
+	`INSERT INTO "authorization"(client_id, user_id, scope_id)
+	(SELECT $1, $2, c.client_id FROM ) `
+	d.stmts[""]
+
 	return nil
 }
 

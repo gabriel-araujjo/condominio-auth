@@ -211,7 +211,7 @@ func (d *userDaoMemory) Authenticate(credential string, password string) (int64,
 	return user.ID, nil
 }
 
-func (d *userDaoMemory) Authorize(*domain.ClientAuthorizationRequest) error {
+func (d *userDaoMemory) AuthorizeClient(userID int64, clientPublicID string, scope domain.Scope) error {
 	// TODO
 	return nil
 }
