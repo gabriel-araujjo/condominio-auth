@@ -102,7 +102,7 @@ var userdaoStmts = map[string]string{
 	"authorizeClient": `
 			INSERT INTO "authorization"(client_id, user_id, scope_id) 
 			SELECT $1 AS client_id, $2 AS user_id, s.scope_id FROM "scope" s 
-			WHERE s.name = ANY ($3) ON CONFLICT DO NOTHING;
+			WHERE s.name = ANY ($3) ON CONFLICT DO UPDATE;
 	`,
 }
 
@@ -364,10 +364,23 @@ func (d *userDaoPG) AuthorizeClient(userID int64, clientPublicID string, scope d
 		return errors.New("pg: invalid clientPublicID")
 	}
 
-	``
-	`INSERT INTO "authorization"(client_id, user_id, scope_id)
-	(SELECT $1, $2, c.client_id FROM ) `
-	d.stmts[""]
+	tx, err := d.db.Begin()
+	if err != nil {
+		return err
+	}
+
+	result, err := d.stmts["authorizeClient"].Exec(clientID, userID, []string(scope))
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	if count, _ := result.RowsAffected(); count != int64(len(scope)) {
+		tx.Rollback()
+		return fmt.Errorf("pg: scope not registered: %q", strings.Join(scope, " "))
+	}
+
+	tx.Commit()
 
 	return nil
 }
