@@ -1,19 +1,21 @@
 package dao
 
 import (
-	"io"
-	"github.com/gabriel-araujjo/condominio-auth/dao/daos"
-	"github.com/gabriel-araujjo/condominio-auth/dao/internal/postgres"
-	"github.com/gabriel-araujjo/condominio-auth/dao/internal/memory"
-	"github.com/gabriel-araujjo/condominio-auth/config"
 	"errors"
+	"io"
+
+	"github.com/gabriel-araujjo/condominio-auth/config"
+	"github.com/gabriel-araujjo/condominio-auth/dao/daos"
+	"github.com/gabriel-araujjo/condominio-auth/dao/internal/memory"
+	"github.com/gabriel-araujjo/condominio-auth/dao/internal/postgres"
 )
 
 // Dao contains all Domain related daos
 type Dao struct {
-	closer io.Closer
-	User   daos.UserDao
-	Client daos.ClientDao
+	closer     io.Closer
+	User       daos.UserDao
+	Client     daos.ClientDao
+	Permission daos.PermissionDao
 }
 
 // Close the dao connections, this method must be
@@ -31,9 +33,9 @@ func NewFromConfig(config *config.Config) (*Dao, error) {
 	var err error
 	switch config.Dao.Driver {
 	case "postgres":
-		d.User, d.Client, d.closer, err = postgres.NewDao(config)
+		d.User, d.Client, d.Permission, d.closer, err = postgres.NewDao(config)
 	case "memory":
-		d.User, d.Client, err = memory.NewDao(config)
+		d.User, d.Client, d.Permission, err = memory.NewDao(config)
 	default:
 		err = errors.New("dao: Undefined DB driver")
 	}

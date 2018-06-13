@@ -51,6 +51,8 @@ type Notary struct {
 	JWTAlgorithm    string
 	JWTVerifyingKey interface{}
 	JWTSigningKey   interface{}
+	// 4, 8, 16 and 32 bytes key
+	CodeCipherSecret []byte
 }
 
 func getEnv(name string, fallback string) (env string) {

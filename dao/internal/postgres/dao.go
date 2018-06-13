@@ -14,21 +14,21 @@ import (
 )
 
 // NewDao creates a dao following the passed config
-func NewDao(conf *config.Config) (daos.UserDao, daos.ClientDao, io.Closer, error) {
+func NewDao(conf *config.Config) (daos.UserDao, daos.ClientDao, daos.PermissionDao, io.Closer, error) {
 	db, err := sql.Open(conf.Dao.Driver, conf.Dao.URI)
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	return newDaoInternal(db, &scheme{conf: conf})
 }
 
-func newDaoInternal(db *sql.DB, scheme version.Scheme) (daos.UserDao, daos.ClientDao, io.Closer, error) {
+func newDaoInternal(db *sql.DB, scheme version.Scheme) (daos.UserDao, daos.ClientDao, daos.PermissionDao, io.Closer, error) {
 	err := version.PersistScheme(db, scheme)
 	if err != nil {
 		db.Close()
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
-	return &userDaoPG{db: db}, &clientDaoPG{db: db}, db, nil
+	return &userDaoPG{db: db}, &clientDaoPG{db: db}, newPGPermissionDao(db), db, nil
 }

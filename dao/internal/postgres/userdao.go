@@ -97,12 +97,12 @@ var userdaoStmts = map[string]string{
                   e.email = $1 OR
                   p.phone = $1
 				)
-			AND u.hash = crypt($3, u.hash);
+			AND u.hash = crypt($3, u.hash)
 	`,
 	"authorizeClient": `
 			INSERT INTO "authorization"(client_id, user_id, scope_id) 
 			SELECT $1 AS client_id, $2 AS user_id, s.scope_id FROM "scope" s 
-			WHERE s.name = ANY ($3) ON CONFLICT DO UPDATE;
+			WHERE s.name = ANY ($3) ON CONFLICT DO UPDATE
 	`,
 }
 

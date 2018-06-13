@@ -6,23 +6,14 @@ import (
 )
 
 type errorMessage struct {
-	Message string `json:"message"`
+	Message string `json:"error"`
 }
 
 // WriteErrorWithCode sends an error back with the specified status code
-func WriteErrorWithCode(w http.ResponseWriter, status int, errToSend interface{}) (int, error) {
+func WriteErrorWithCode(w http.ResponseWriter, status int, errToSend interface{}) error {
 	w.WriteHeader(status)
 	if message, ok := errToSend.(string); ok {
-		return writeError(w, &errorMessage{message})
+		return json.NewEncoder(w).Encode(&errorMessage{message})
 	}
-	return writeError(w, errToSend)
-}
-
-func writeError(w http.ResponseWriter, errToSend interface{}) (int, error) {
-	data, err := json.Marshal(errToSend)
-	if err != nil {
-		return 0, err
-	}
-	w.Header().Set("Content-Type", "application/json")
-	return w.Write(data)
+	return json.NewEncoder(w).Encode(errToSend)
 }

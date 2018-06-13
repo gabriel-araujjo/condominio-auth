@@ -5,6 +5,12 @@ import (
 	jp "github.com/gabriel-araujjo/json-patcher"
 )
 
+// PermissionDao manage queries related to permissions
+type PermissionDao interface {
+	Create(string) error
+	ScopeIntoPermissionIDs(domain.Scope) ([]int64, error)
+}
+
 // ClientDao manage all queries related to clients
 type ClientDao interface {
 	Create(u *domain.Client) error

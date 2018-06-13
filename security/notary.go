@@ -1,8 +1,10 @@
 package security
 
 import (
+	"bytes"
+	"crypto/aes"
+	"crypto/cipher"
 	"crypto/rand"
-	"crypto/rsa"
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/binary"
@@ -35,7 +37,7 @@ type Notary struct {
 	tokenStore TokenStore
 	privateKey interface{}
 	publicKey  interface{}
-	codeKey    *rsa.PrivateKey
+	codeCipher cipher.Block
 	closer     io.Closer
 }
 
@@ -106,54 +108,152 @@ func (a *Notary) RevokeAccessToken(accessToken string) error {
 	return a.tokenStore.Remove(accessToken)
 }
 
-func (a *Notary) NewClientCode(clientID int64, scope []int64) (string, error) {
-	if len(scope) > 21 {
-		return "", errors.New("max of 21 scopes per code")
-	}
-	var message [96]byte
-	binary.BigEndian.PutUint32(message[:4], uint32(clientID))
-	message[4] = uint8(len(scope))
-	i := 5
-	for _, s := range scope {
-		binary.BigEndian.PutUint32(message[i:i+4], uint32(s))
-		i += 4
-	}
-	rng := rand.Reader
-	rand.Read(message[i:])
-	cipher, err := rsa.EncryptPKCS1v15(rng, &a.codeKey.PublicKey, message[:])
+// rawClientCode stores the client authorization code
+//
+// XX XX = client id            (4 bytes)
+// N     = permission count     (1 byte )
+// PP    = permission           (2 bytes)
+// HH HH = hash                 (4 bytes)
+// R*    = random section
+//
+//         01 23 4 5 67 89 AB CD EF
+// 0x00    XX XX|N|R|PP|PP|PP|RR RR
+// 0x10    PP|PP|P P|PP|PP|PP|RR RR
+// 0x20    PP|PP|P P|PP|PP|PP|RR RR
+// 0x30    PP|PP|P P|PP|PP|PP|RR RR
+// 0x40    PP|PP|P P|PP|UU|UU|RR RR
+// 0x50    UU|UU|H H HH HH HH|RR RR
+type rawClientCode [0x60]byte
 
-	if err != nil {
-		return "", err
-	}
-
-	return base64.URLEncoding.EncodeToString(cipher), nil
+func (code rawClientCode) clientID() int64 {
+	return int64(binary.BigEndian.Uint32(code[0:4]))
 }
 
-func (a *Notary) DecipherCode(code string) (clientID int64, scope []int64, err error) {
-	cipher, err := base64.URLEncoding.DecodeString(code)
-	if err != nil {
-		return
+func (code rawClientCode) scopeIDs() []int64 {
+	toRead := code[4]
+	s := make([]int64, 0, toRead)
+	i := 6
+	for i < 0x60 && toRead > 0 {
+		// Skip random bytes
+		if i%0x10 == 0xC {
+			i += 4
+		}
+		s = append(s, int64(binary.BigEndian.Uint16(code[i:i+2])))
+		i += 2
+		toRead--
+	}
+	return s
+}
+
+func (code rawClientCode) hash() (h []byte) {
+	h = make([]byte, 8)
+	copy(h, code[0x54:0x5C])
+	return
+}
+
+func (code rawClientCode) userID() (uID int64) {
+	uID = int64((uint64(binary.BigEndian.Uint32(code[0x48:0x4C])) << 32) | uint64(binary.BigEndian.Uint32(code[0x50:0x54])))
+	return
+}
+
+func (code rawClientCode) strip() (stripped []byte) {
+	toRead := code[4]
+	stripped = make([]byte, 0, 4+toRead*2+8)
+	stripped = append(stripped, code[0:4]...)
+	i := 6
+	for i < 0x60 && toRead > 0 {
+		if i%0x10 == 0xC {
+			i += 4
+		}
+		stripped = append(stripped, code[i:i+2]...)
+		i += 2
+		toRead--
+	}
+	stripped = append(stripped, code[0x48:0x4C]...)
+	stripped = append(stripped, code[0x50:0x54]...)
+	return
+}
+
+// NewClientCode generate a new code to be used on authorization end point
+func (a *Notary) NewClientCode(clientID int64, scope []int64, userID int64) (string, error) {
+	if len(scope) > 25 {
+		return "", errors.New("max of 25 scopes per code")
 	}
 	rng := rand.Reader
-	message, err := rsa.DecryptPKCS1v15(rng, a.codeKey, cipher)
+
+	var message rawClientCode
+
+	// write client id
+	binary.BigEndian.PutUint32(message[:4], uint32(clientID))
+
+	// write scope length
+	message[4] = uint8(len(scope))
+
+	// fifth byte is random
+	rng.Read(message[5:6])
+
+	// start permission writing at sixth byte
+	i := 6
+	for _, s := range scope {
+		// stuff random bytes at end of each block
+		if i%0x10 == 0xC {
+			rng.Read(message[i : i+4])
+			i += 4
+		}
+
+		// write permission
+		binary.BigEndian.PutUint16(message[i:i+2], uint16(s))
+		i += 2
+	}
+
+	// stuff scope space with random bytes
+	rng.Read(message[i:0x48])
+
+	// uid first 4 bytes
+	binary.BigEndian.PutUint32(message[0x48:0x4C], uint32(userID>>32))
+	// random bytes
+	rng.Read(message[0x4C:0x50])
+	// uid last 4 bytes
+	binary.BigEndian.PutUint32(message[0x50:0x54], uint32(userID))
+
+	// write hash
+	hash := sha256.Sum256(message.strip())
+	copy(message[0x54:0x5C], hash[0:8])
+
+	// stuff final code random bytes
+	rng.Read(message[0x5C:0x60])
+
+	blockSize := a.codeCipher.BlockSize()
+	for i = 0; i < 0x60; i += blockSize {
+		a.codeCipher.Encrypt(message[i:i+blockSize], message[i:i+blockSize])
+	}
+
+	return base64.URLEncoding.EncodeToString(message[:]), nil
+}
+
+// DecipherCode get the client and the scope of a code
+func (a *Notary) DecipherCode(code string) (clientID int64, scope []int64, uID int64, err error) {
+	var message rawClientCode
+	_, err = base64.URLEncoding.Decode(message[:], []byte(code))
 	if err != nil {
 		return
 	}
 
-	scopeLen := int32(message[4])
+	blockSize := a.codeCipher.BlockSize()
+	for i := 0; i < 0x60; i += blockSize {
+		a.codeCipher.Decrypt(message[i:i+blockSize], message[i:i+blockSize])
+	}
 
-	if scopeLen > 21 {
+	hash := sha256.Sum256(message.strip())
+
+	if !bytes.Equal(hash[0:8], message.hash()) {
+		err = errors.New("invalid code")
 		return
 	}
 
-	clientID = int64(binary.BigEndian.Uint32(message[:4]))
-	i := 5
-	scope = make([]int64, scopeLen)
-	for s := range scope {
-		scope[s] = int64(binary.BigEndian.Uint32(message[i : i+4]))
-		i += 4
-	}
-
+	clientID = message.clientID()
+	scope = message.scopeIDs()
+	uID = message.userID()
 	return
 }
 
@@ -179,14 +279,14 @@ func NewNotary(config *config.Config) (*Notary, error) {
 		return nil, err
 	}
 
-	privateKey, _ := rsa.GenerateKey(rand.Reader, 2048)
+	privateKey, _ := aes.NewCipher(config.Notary.CodeCipherSecret)
 
 	return &Notary{
 		method:     jwt.GetSigningMethod(config.Notary.JWTAlgorithm),
 		tokenStore: tokenStore,
 		privateKey: config.Notary.JWTSigningKey,
 		publicKey:  config.Notary.JWTVerifyingKey,
-		codeKey:    privateKey,
+		codeCipher: privateKey,
 		closer:     closer,
 	}, nil
 }
