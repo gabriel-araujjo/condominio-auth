@@ -4,6 +4,8 @@ import (
 	"errors"
 	"io"
 
+	"github.com/gabriel-araujjo/condominio-auth/domain"
+
 	"github.com/gabriel-araujjo/condominio-auth/config"
 	"github.com/gomodule/redigo/redis"
 )
@@ -12,11 +14,12 @@ type redisTokenStore struct {
 	pool *redis.Pool
 }
 
-func (b *redisTokenStore) Add(token string, expiresAt int64, scope ...string) error {
+func (b *redisTokenStore) Add(token string, expiresAt int64, userID int64, scope domain.Scope) error {
 	conn := b.pool.Get()
 	defer conn.Close()
-	args := make([]interface{}, len(scope)+1)
+	args := make([]interface{}, len(scope)+2)
 	args[0] = token
+	args[1] = userID
 	for i := range scope {
 		args[i+1] = scope[i]
 	}
@@ -25,7 +28,7 @@ func (b *redisTokenStore) Add(token string, expiresAt int64, scope ...string) er
 	return conn.Flush()
 }
 
-func (b *redisTokenStore) Get(token string) (scopes []string, err error) {
+func (b *redisTokenStore) Get(token string) (userID int64, scopes domain.Scope, err error) {
 	conn := b.pool.Get()
 	defer conn.Close()
 	result, err := conn.Do("SMEMBERS", token)
@@ -38,9 +41,10 @@ func (b *redisTokenStore) Get(token string) (scopes []string, err error) {
 		return
 	}
 
-	scopes = make([]string, len(setMembers))
+	scopes = make([]string, len(setMembers)-1)
 	var isString bool
-	for i := range setMembers {
+	userID = setMembers[0].(int64)
+	for i := range setMembers[1:] {
 		scopes[i], isString = setMembers[i].(string)
 		if !isString {
 			err = errors.New("unexpected type")

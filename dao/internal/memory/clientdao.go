@@ -19,7 +19,7 @@ func (d *clientDaoMemory) Update(u *domain.Client) error {
 	panic("implement me")
 }
 
-func (d *clientDaoMemory) Get(publicId string) (*domain.Client, error) {
+func (d *clientDaoMemory) Get(publicID string) (*domain.Client, error) {
 	panic("implement me")
 }
 
